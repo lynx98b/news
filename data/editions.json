@@ -1,6 +1,14 @@
 {
   "editions": [
     {
+      "numero": "002",
+      "date": "2026-05-01",
+      "date_fr": "Vendredi 1er mai 2026 · Spécial Algérie",
+      "titre_une": "L'Algérie rouvre ses dunes au monde, doucement",
+      "kicker_une": "Tourisme · Sahara algérien",
+      "fichier": "archives/n002.html"
+    },
+    {
       "numero": "001",
       "date": "2026-04-30",
       "date_fr": "Jeudi 30 avril 2026",
