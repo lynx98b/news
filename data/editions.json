@@ -1,6 +1,14 @@
 {
   "editions": [
     {
+      "numero": "003",
+      "date": "2026-05-02",
+      "date_fr": "Samedi 2 mai 2026",
+      "titre_une": "Dans la forêt de Sumatra, une femme a convaincu soixante villages",
+      "kicker_une": "Conservation · Sumatra · Indonésie",
+      "fichier": "archives/n003.html"
+    },
+    {
       "numero": "002",
       "date": "2026-05-01",
       "date_fr": "Vendredi 1er mai 2026 · Spécial Algérie",
