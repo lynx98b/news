@@ -6,105 +6,289 @@
 <title>Bonjour le monde</title>
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  /* L'index charge la dernière édition dans l'iframe */
-  body { margin: 0; padding: 0; }
-  #latest-frame {
-    width: 100%;
-    border: 0;
-    display: block;
-    min-height: 100vh;
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 2rem 0 0;
+}
+@media (min-width: 720px) {
+  .home-grid {
+    grid-template-columns: 1.65fr 1fr;
+    gap: 0;
   }
-  .loader {
-    text-align: center;
-    padding: 4rem 2rem;
-    font-family: var(--display, Georgia, serif);
-    color: var(--ink-soft, #4a4a48);
-    font-style: italic;
-  }
-  .archives-page {
-    max-width: 980px;
-    margin: 0 auto;
-    background: var(--paper, #fbf6ec);
-    padding: 2rem 1.5rem 3rem;
-  }
-  @media (min-width: 800px){ .archives-page { padding: 2.5rem 3rem; } }
+}
+
+/* Carte édition du jour */
+.card-today {
+  border-top: 4px solid var(--ink);
+  padding: 1.5rem 0 2rem;
+}
+@media (min-width: 720px) {
+  .card-today { padding-right: 2.5rem; border-right: 1px solid var(--rule); }
+}
+.card-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 1rem;
+}
+.card-today .card-label { color: var(--red); }
+.card-num {
+  font-family: var(--display);
+  font-size: 96px;
+  line-height: 1;
+  color: var(--rule);
+  font-weight: 500;
+  display: block;
+  letter-spacing: -4px;
+  margin-bottom: -6px;
+}
+.card-kicker {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+.card-today h2 {
+  font-family: var(--display);
+  font-size: clamp(26px, 4.5vw, 38px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0 0 0.75rem;
+}
+.card-date {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 11px 22px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--red); }
+
+/* Colonne droite */
+.right-col {
+  padding: 0;
+}
+@media (min-width: 720px) {
+  .right-col { padding: 0 0 0 2rem; }
+}
+
+/* Carte spécial */
+.card-special {
+  border-top: 4px solid var(--gold);
+  padding: 1.5rem 0 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 720px) { .card-special { margin-top: 0; } }
+.card-special .card-label { color: var(--gold); }
+.card-special h3 {
+  font-family: var(--display);
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+.btn-secondary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { color: var(--paper); background: var(--ink); }
+
+/* Archives dans la colonne droite */
+.archives-side {
+  border-top: 2px solid var(--rule);
+  padding-top: 1.25rem;
+  margin-top: 2rem;
+}
+.archives-side h3 {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 1rem;
+  font-weight: bold;
+}
+.archives-side ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.archives-side li {
+  border-bottom: 0.5px solid var(--rule);
+  padding: 8px 0;
+}
+.archives-side a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 14px;
+  line-height: 1.4;
+  display: block;
+}
+.archives-side a:hover { color: var(--red); }
+.archives-side .meta {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.loader { text-align: center; padding: 4rem 2rem; font-style: italic; color: var(--ink-soft); }
 </style>
 </head>
 <body>
 
-<div id="content">
-  <div class="loader">Chargement de l'édition du jour…</div>
+<div class="page">
+
+<div class="topbar">
+  <small id="topbar-date">Bonjour le monde</small>
+  <button class="toggle" id="toggle">☾ NUIT</button>
+</div>
+
+<header class="masthead">
+  <p class="pre" id="masthead-kicker">&nbsp;</p>
+  <h1>Bonjour le monde</h1>
+  <p class="strap">les bonnes nouvelles, des cinq continents</p>
+</header>
+
+<div class="bandeau">
+  <span>Aujourd'hui</span>
+  <span id="bandeau-info">chargement…</span>
+</div>
+
+<div id="content"><div class="loader">Chargement de l'édition…</div></div>
+
 </div>
 
 <script>
+(function(){
+  const btn = document.getElementById('toggle');
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark');
+    btn.textContent = '☀ JOUR';
+  }
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    btn.textContent = document.body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
+  });
+})();
+
 (async function(){
   try {
     const res = await fetch('data/editions.json');
     const data = await res.json();
     const editions = data.editions || [];
-    if (editions.length === 0) {
+
+    // Seulement les éditions dont la date est <= aujourd'hui
+    const today = new Date().toISOString().slice(0, 10);
+    const available = editions.filter(e => e.date <= today);
+
+    if (available.length === 0) {
       document.getElementById('content').innerHTML =
         '<div class="loader">Aucune édition disponible.</div>';
       return;
     }
 
-    // Cherche l'édition dont la date correspond à aujourd'hui
-    const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
-    const todayEdition = editions.find(e => e.date === today);
-    const latest = todayEdition || editions[0];
-    const archives = editions.filter(e => e !== latest);
+    const todayEd  = available[0];
+    const specialEd = available.find(e => e.special && e !== todayEd) || null;
+    const archives  = available.filter(e => e !== todayEd && e !== specialEd);
 
-    // Charge l'édition du jour
-    const frameRes = await fetch(latest.fichier);
-    let html = await frameRes.text();
+    // Topbar + masthead
+    document.title = 'Bonjour le monde — N° ' + todayEd.numero;
+    document.getElementById('topbar-date').textContent =
+      'N° ' + todayEd.numero + ' · ' + todayEd.date_fr;
+    document.getElementById('masthead-kicker').textContent = todayEd.kicker_une;
+    document.getElementById('bandeau-info').textContent =
+      available.length + ' édition' + (available.length > 1 ? 's' : '') + ' disponible' + (available.length > 1 ? 's' : '');
 
-    // Injecte le bandeau archives juste avant le colophon
-    const archivesHtml = renderArchives(archives);
-    if (html.includes('<div class="colophon">')) {
-      html = html.replace('<div class="colophon">', archivesHtml + '<div class="colophon">');
-    } else {
-      html += archivesHtml;
+    // HTML
+    let html = '<div class="home-grid">';
+
+    // Carte édition du jour
+    html += `
+      <div class="card-today">
+        <p class="card-label">Édition du jour</p>
+        <span class="card-num">${todayEd.numero}</span>
+        <p class="card-kicker">${todayEd.kicker_une}</p>
+        <h2>${todayEd.titre_une}</h2>
+        <p class="card-date">${todayEd.date_fr}</p>
+        <a class="btn-primary" href="${todayEd.fichier}">Lire l'édition →</a>
+      </div>`;
+
+    // Colonne droite
+    html += '<div class="right-col">';
+
+    if (specialEd) {
+      html += `
+        <div class="card-special">
+          <p class="card-label">Spécial de la semaine</p>
+          <p class="card-kicker">${specialEd.kicker_une}</p>
+          <h3>${specialEd.titre_une}</h3>
+          <a class="btn-secondary" href="${specialEd.fichier}">Lire le spécial →</a>
+        </div>`;
     }
 
-    document.title = 'Bonjour le monde — N° ' + latest.numero + ' · ' + latest.date_fr;
-    document.getElementById('content').innerHTML = extractBody(html);
-
-    // Réinstalle le toggle jour/nuit
-    const btn = document.getElementById('toggle');
-    if (btn) {
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-        btn.textContent = '☀ JOUR';
-      }
-      btn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        btn.textContent = document.body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
-      });
+    if (archives.length > 0) {
+      const marginTop = specialEd ? '' : 'margin-top:1.5rem;border-top:4px solid var(--rule);padding-top:1.5rem;';
+      html += `<div class="archives-side" style="${marginTop}">
+        <h3>Archives</h3>
+        <ul>
+          ${archives.map(e => `
+            <li>
+              <a href="${e.fichier}">
+                <span class="meta">N° ${e.numero} · ${e.date_fr}</span>
+                ${e.titre_une}
+              </a>
+            </li>`).join('')}
+        </ul>
+      </div>`;
     }
+
+    html += '</div>'; // right-col
+    html += '</div>'; // home-grid
+
+    html += `
+      <div class="colophon">
+        <p class="left">Posez le téléphone. Respirez. À demain.</p>
+        <p class="right">Édition assemblée par une IA · Toutes les nouvelles citent leur source</p>
+      </div>`;
+
+    document.getElementById('content').innerHTML = html;
+
   } catch(err) {
     document.getElementById('content').innerHTML =
-      '<div class="loader">Erreur de chargement : ' + err.message + '</div>';
-  }
-
-  function extractBody(html) {
-    const match = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-    return match ? match[1] : html;
-  }
-
-  function renderArchives(archives) {
-    if (archives.length === 0) return '';
-    let items = archives.map(e => `
-      <li>
-        <a href="${e.fichier}">
-          <span class="meta">N° ${e.numero} · ${e.date_fr}</span>
-          ${e.titre_une}
-        </a>
-      </li>`).join('');
-    return `
-      <nav class="archives-nav">
-        <h3>Numéros précédents</h3>
-        <ul class="archives-list">${items}</ul>
-      </nav>`;
+      '<div class="loader">Erreur : ' + err.message + '</div>';
   }
 })();
 </script>
