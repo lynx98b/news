@@ -1,1 +1,20 @@
-{"editions": []}
+{
+  "editions": [
+    {
+      "numero": "001",
+      "date": "2026-04-30",
+      "date_fr": "Jeudi 30 avril 2026",
+      "titre_une": "L'Afrique se fend en silence, à la vitesse de l'ongle qui pousse",
+      "kicker_une": "Afrique · Vallée du Grand Rift",
+      "fichier": "archives/n001.html"
+    },
+    {
+      "numero": "000",
+      "date": "2026-04-29",
+      "date_fr": "Mercredi 29 avril 2026 · Pilote",
+      "titre_une": "Au Malawi, un lac qu'on croyait perdu se remet à respirer",
+      "kicker_une": "Afrique · Malawi",
+      "fichier": "archives/n000.html"
+    }
+  ]
+}

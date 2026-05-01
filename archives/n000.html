@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonjour le monde — Numéro 0</title>
+<style>
+:root {
+  --bg: #fbf8f1;
+  --surface: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a48;
+  --ink-faint: #8a8a85;
+  --rule: #d8d3c5;
+  --rule-strong: #1a1a1a;
+  --accent-green: #3B6D11;
+  --accent-blue: #185FA5;
+  --accent-coral: #993C1D;
+  --accent-purple: #534AB7;
+  --accent-teal: #0F6E56;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+body.dark {
+  --bg: #141414;
+  --surface: #1c1c1c;
+  --ink: #ece9e2;
+  --ink-soft: #b8b5ad;
+  --ink-faint: #7a7770;
+  --rule: #303030;
+  --rule-strong: #ece9e2;
+  --accent-green: #97C459;
+  --accent-blue: #85B7EB;
+  --accent-coral: #F0997B;
+  --accent-purple: #AFA9EC;
+  --accent-teal: #5DCAA5;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.75;
+  transition: background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+@media (min-width: 720px) {
+  .page { padding: 3.5rem 2rem 5rem; }
+}
+
+/* En-tête */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.topbar small {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.toggle {
+  background: transparent;
+  border: 0.5px solid var(--ink-soft);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.toggle:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Cartouche titre */
+.masthead {
+  text-align: center;
+  padding: 1.75rem 0 1rem;
+  border-bottom: 0.5px solid var(--rule);
+  margin-bottom: 3rem;
+}
+.masthead h1 {
+  font-size: clamp(38px, 8vw, 56px);
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+.masthead .strapline {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 14px 0 0;
+}
+
+/* Étiquette continent / rubrique */
+.kicker {
+  font-style: italic;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+
+/* À la une */
+.lead {
+  margin-bottom: 4rem;
+}
+.lead .kicker { color: var(--accent-green); }
+.lead h2 {
+  font-size: clamp(28px, 5.5vw, 38px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0 0 1.25rem;
+}
+.lead .deck {
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 2rem;
+}
+.lead p:first-of-type::first-letter {
+  font-size: 4.5em;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.1em 0 0;
+  font-weight: 500;
+}
+
+/* Articles */
+article {
+  margin-bottom: 4rem;
+}
+article h2 {
+  font-size: clamp(24px, 4.5vw, 30px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin: 0 0 1.25rem;
+}
+article p {
+  margin: 0 0 1.1rem;
+}
+
+/* Numéro section */
+.section-num {
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0 0 -0.5rem;
+  opacity: 0.85;
+}
+.sec-01 { color: var(--accent-blue); }
+.sec-02 { color: var(--accent-coral); }
+.sec-03 { color: var(--accent-purple); }
+.sec-04 { color: var(--accent-teal); }
+
+/* Source */
+.source {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-top: 0.5px solid var(--rule);
+  padding-top: 12px;
+  margin-top: 1.5rem;
+}
+
+/* Bloc curiosité / pensée */
+.divider {
+  border: 0;
+  border-top: 0.5px solid var(--rule);
+  margin: 4rem 0;
+}
+.curiosities {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+@media (min-width: 600px) {
+  .curiosities { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+.curiosities h3 {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  font-weight: 500;
+  border-bottom: 0.5px solid var(--rule);
+  padding-bottom: 8px;
+}
+.riddle p, .thought p {
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0 0 0.75rem;
+}
+.riddle small, .thought small {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-style: normal;
+}
+
+/* Page IA */
+.ai-page {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 2.25rem 2rem;
+  margin-bottom: 3rem;
+  border: 0.5px solid var(--rule);
+}
+.ai-page .kicker {
+  font-style: normal;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+.ai-page h2 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  margin: 0 0 1.5rem;
+  line-height: 1.25;
+}
+.ai-page p { font-size: 17px; }
+.ai-page .signoff {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-top: 1.5rem;
+}
+
+/* Pied de page */
+.colophon {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.colophon p {
+  font-size: 12px;
+  margin: 0;
+  color: var(--ink-faint);
+}
+.colophon .left { font-style: italic; }
+.colophon .right {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+@media (max-width: 500px) {
+  body { font-size: 16.5px; }
+  .ai-page { padding: 1.75rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="topbar">
+  <small>N° 000 · Mercredi 29 avril 2026 · Numéro pilote</small>
+  <button class="toggle" id="toggle">☾ NUIT</button>
+</div>
+
+<header class="masthead">
+  <h1>Bonjour le monde</h1>
+  <p class="strapline">les bonnes nouvelles, des cinq continents — articles existants, repris et résumés</p>
+</header>
+
+<!-- À LA UNE -->
+<section class="lead">
+  <p class="kicker">— À la une — Afrique · Malawi</p>
+  <h2>Au Malawi, un lac qu'on croyait perdu se remet à respirer</h2>
+  <p class="deck">À l'occasion de la Journée internationale de la Terre, des voix venues du sud-est de l'Afrique racontent comment le savoir local et la patience collective ont ramené la vie là où on annonçait sa fin.</p>
+
+  <p>Il y a quelques années, on disait du lac Chilwa qu'il faisait ses adieux. Le grand miroir d'eau peu profonde au sud-est du Malawi, ce vieux compagnon des aigrettes blanches et des pêcheurs en pirogue, s'enfonçait saison après saison dans une sécheresse qu'on n'osait plus appeler exceptionnelle. Le sable remontait là où l'eau régnait. Les villages riverains comptaient leurs filets vides. Les oiseaux migrateurs cherchaient ailleurs.</p>
+
+  <p>Cette semaine, à l'occasion de la Journée internationale de la Terre, une responsable malawite a pris la parole lors d'une rencontre internationale consacrée à la santé planétaire. Elle racontait autre chose. Elle racontait le lac qui revient.</p>
+
+  <p>Ce ne sont pas les pluies seules qui ont tout fait. Ce sont les humains qui les ont accompagnées. Devant l'effondrement annoncé, les communautés du bassin n'ont pas attendu qu'un programme étranger sauve leur eau. Elles se sont organisées. Elles ont remis en question leurs pratiques, longtemps considérées comme intouchables. Réduit la pression sur les zones les plus fragiles. Restauré, mètre carré par mètre carré, des végétations rivulaires qui retiennent les sols et nourrissent les nappes. Convoqué les anciens pour réapprendre des rythmes que la modernité avait fait oublier.</p>
+
+  <p>Le savoir local ne fait pas la une des grandes conférences sur le climat. Il avance sans communiqués. Il sait, sans devoir le démontrer dans une revue scientifique, que la vie d'un lac dépend de mille gestes accomplis chaque saison à des kilomètres en amont. Que l'eau qui arrive ici porte la mémoire de ce qu'on a fait là-bas. Que rien, dans un écosystème, n'est isolé de rien.</p>
+
+  <p>Aujourd'hui, le lac Chilwa montre des signes auxquels personne n'osait croire. Les pêcheurs reviennent. Les variétés d'oiseaux qui font sa réputation reprennent leurs cycles. Les enfants apprennent à nommer des espèces que leurs parents n'avaient plus revues depuis l'enfance.</p>
+
+  <p>Les experts, prudents, parlent de fragilité. Le climat n'est pas devenu plus tendre, et un retour n'est pas une victoire définitive. Mais quelque chose s'est cassé dans le récit du déclin inévitable. Quand un lac qu'on croyait condamné se remet à respirer parce qu'un peuple a décidé de ne pas le laisser mourir, c'est plus qu'une bonne nouvelle écologique. C'est une démonstration politique : l'effondrement n'est pas une fatalité, c'est une option parmi d'autres.</p>
+
+  <p>Pendant que vous lisez ces lignes, un héron s'envole peut-être au-dessus de Chilwa. Ses ailes battent l'air comme elles le faisaient il y a mille ans. Et quelque part, dans un village qu'aucun de nous ne connaîtra, quelqu'un se penche sur l'eau et y voit son visage, là où, il y a peu, il n'y avait que de la terre fendue.</p>
+
+  <p class="source">Source · ISAAA Africenter · Webinaire de la Journée internationale de la Terre · 22 avril 2026</p>
+</section>
+
+<!-- ARTICLE 01 -->
+<article>
+  <p class="section-num sec-01">01</p>
+  <p class="kicker">Lien humain · Asie · Japon</p>
+  <h2>Au Japon, des enfants vont revoir les deux moitiés de leur vie</h2>
+
+  <p>Au Japon, jusqu'à cette semaine, divorcer voulait dire choisir. Pas seulement choisir une vie sans l'autre. Choisir aussi, pour les enfants, lequel de leurs deux parents resterait dans le quotidien — et lequel deviendrait progressivement une silhouette dans des photos.</p>
+
+  <p>Le Code civil japonais, héritage d'une époque, n'autorisait qu'un parent gardien après la séparation. Dans la grande majorité des cas, c'était la mère. L'autre, le plus souvent le père, voyait sa présence légale dans la vie de ses enfants se réduire à ce que le parent gardien acceptait de lui accorder. Quand l'entente était bonne, cela ressemblait à un partage. Quand elle ne l'était pas, c'était un effacement.</p>
+
+  <p>Le Parlement vient de tourner cette page. La garde partagée devient possible, sur demande, après divorce. Le Japon n'est plus l'exception parmi les grandes démocraties qui considèrent que deux parents valent mieux qu'un, même séparés.</p>
+
+  <p>Ce changement ne résoudra pas tout. La loi permet, elle n'oblige pas. Les juges devront apprécier, au cas par cas, si la garde commune sert vraiment l'intérêt de l'enfant — et il y aura des situations où la séparation totale d'un parent reste la meilleure protection. Mais pour des dizaines de milliers de pères et de mères, et pour leurs enfants, une porte vient de s'ouvrir là où il n'y avait qu'un mur.</p>
+
+  <p>Il faut imaginer ce que cela représente, concrètement. Un anniversaire qu'on pourra à nouveau partager. Un dimanche qu'on n'aura plus à mendier. Une ressemblance qu'on pourra retrouver dans le miroir d'une autre maison. Ce sont des petites choses, à l'échelle d'un pays. Ce sont des montagnes, à l'échelle d'une famille.</p>
+
+  <p class="source">Source · Positive News · Avril 2026</p>
+</article>
+
+<!-- ARTICLE 02 -->
+<article>
+  <p class="section-num sec-02">02</p>
+  <p class="kicker">Culture · Amériques · États-Unis</p>
+  <h2>Aux États-Unis, les librairies indépendantes refusent de mourir</h2>
+
+  <p>On les avait enterrées trois fois. Avec l'arrivée des chaînes dans les années 1990. Avec l'explosion d'Amazon dans les années 2000. Avec la pandémie. Les librairies indépendantes américaines ressemblaient à ces espèces qu'on continue d'observer par tendresse, en sachant qu'on assiste à une disparition.</p>
+
+  <p>Les chiffres viennent de remettre les certitudes en question. En 2025, ce sont 422 nouvelles librairies indépendantes qui ont ouvert leurs portes aux États-Unis. Une hausse de 31 % par rapport à l'année précédente. L'Association américaine des libraires, qui tient les comptes, n'avait pas vu ça depuis longtemps.</p>
+
+  <p>Que s'est-il passé ? Rien d'évident. Pas d'aide publique massive, pas de mode passagère. Quelque chose de plus discret : les lecteurs se sont remis à vouloir des lieux. Des étagères qu'on parcourt à pas lents. Des conseils qui ne viennent pas d'un algorithme. Quelqu'un, derrière un comptoir, qui a vraiment lu les livres qu'il vend.</p>
+
+  <p>Les grandes chaînes, elles-mêmes en peine, n'ont jamais su faire ça. Elles ont des inventaires, pas des goûts. Les libraires indépendants ont l'inverse : un goût qu'on peut aimer ou détester, mais qui existe. Et dans une époque saturée de recommandations automatiques, le goût personnel d'un humain redevient une denrée précieuse.</p>
+
+  <p>Beaucoup de ces nouvelles librairies sont petites. Elles tiennent dans une rue commerçante, parfois dans une seule pièce. Elles vendent du café à côté des livres, ou des plantes, ou des disques. Elles organisent des soirées de lecture où viennent quinze personnes. Elles ne font pas de bruit. Mais elles tiennent. Et elles se multiplient.</p>
+
+  <p>C'est peut-être ça, la vraie nouvelle : on avait fini par croire que tout, dans le commerce comme dans la culture, devait passer à grande échelle pour exister. Quatre cent vingt-deux libraires américains viennent de prouver que la petite échelle, faite avec sérieux, peut être contagieuse.</p>
+
+  <p class="source">Source · Good Good Good · 25 avril 2026</p>
+</article>
+
+<!-- ARTICLE 03 -->
+<article>
+  <p class="section-num sec-03">03</p>
+  <p class="kicker">Évasion · Europe · Allemagne</p>
+  <h2>En Lusace, des trous noirs sont devenus le plus grand archipel de lacs d'Europe</h2>
+
+  <p>Il y a trente ans, ce paysage faisait honte. À l'est de l'Allemagne, dans la région de Lusace, des décennies d'extraction du lignite — ce charbon brun bon marché qui a chauffé une bonne partie du bloc soviétique — avaient laissé des cratères. Des trous immenses, noirs, sans vie. La carte ressemblait à une lune écrasée sur la plaine.</p>
+
+  <p>Aujourd'hui, on s'y baigne.</p>
+
+  <p>Le projet a démarré en 1967 et n'a presque jamais cessé. L'idée était simple à dire, immense à faire : remplir d'eau ce que l'industrie avait creusé. Aménager les berges. Connecter ces étendues entre elles. Et accepter, surtout, qu'une telle œuvre demanderait plusieurs vies humaines avant d'être achevée.</p>
+
+  <p>Vingt-trois lacs plus tard, le Lusatian Lakeland s'apprête à ouvrir son dernier-né à la baignade et à la navigation. Quatorze mille hectares de surface d'eau au total. Pour donner une idée, c'est presque la taille du lac de Côme, en Italie. Sauf qu'ici, ce ne sont pas une ville et son lac, mais une constellation : un peu partout, des plans d'eau qui scintillent dans des paysages que les vieilles cartes annonçaient encore comme déserts.</p>
+
+  <p>Dix de ces lacs vont être reliés entre eux par des canaux. Sept mille hectares deviendront alors continûment navigables — un chiffre qui ne dit pas grand-chose tant qu'on n'a pas imaginé ce que cela représente : une voile qu'on déploie un matin, et trois jours plus tard, sans descendre du bateau, on a traversé une région que les générations précédentes connaissaient pour ses fumées.</p>
+
+  <p>C'est une transformation qui touche autre chose que la géographie. Les gens qu'on rencontre là-bas — anciens mineurs, enfants de mineurs, retraités venus de Berlin pour le calme — racontent que l'identité du lieu a changé. On ne dit plus « l'ancien pays du charbon ». On dit, simplement, le pays des lacs. Comme si on avait débaptisé une douleur.</p>
+
+  <p>Aucune région d'Europe n'a effacé ses cicatrices industrielles aussi visiblement. Le Lusatian Lakeland n'est pas une réparation : ce qui a été extrait du sol ne reviendra pas. C'est une métamorphose. Un mot d'avant qu'on prononce moins, un mot d'après qui s'installe. Et l'eau, qui a toujours été plus patiente que nous, a fait son travail.</p>
+
+  <p class="source">Source · Good Good Good · 25 avril 2026</p>
+</article>
+
+<!-- ARTICLE 04 -->
+<article>
+  <p class="section-num sec-04">04</p>
+  <p class="kicker">Nature · Océanie · Australie</p>
+  <h2>Vingt ans à parier discrètement sur ceux qui plantent des forêts</h2>
+
+  <p>Il y a des bonnes nouvelles qui ne ressemblent pas à des bonnes nouvelles. Elles n'ont pas de héros, pas de moment précis, pas de rebondissement. Elles ressemblent plutôt à une rivière calme qui aurait coulé pendant vingt ans sans qu'on s'en rende compte.</p>
+
+  <p>Un programme de bourses lancé en 2007 par une entreprise japonaise pour soutenir des associations en Australie et en Nouvelle-Zélande vient de souffler ses vingt bougies. Le bilan tient en trois chiffres : 130 organisations soutenues, 648 000 dollars distribués, et un nombre incalculable d'arbres replantés, d'enfants accompagnés, d'écosystèmes remis en route.</p>
+
+  <p>L'une des bénéficiaires illustre bien l'esprit du programme. Rainforest Rescue travaille depuis des années à régénérer la forêt tropicale du Daintree, dans le Queensland — l'une des plus anciennes du monde, plus vieille que l'Amazonie. Une première bourse en 2018, pour un projet limité. Puis une autre. Puis une autre. Au lieu d'un coup unique, un compagnonnage. La fidélité, dans le mécénat comme dans l'amitié, est rare.</p>
+
+  <p>Ce qui frappe, dans ces histoires-là, c'est qu'elles s'opposent à une logique dominante. Le monde du don est devenu spectaculaire : grandes campagnes, gros chèques, hashtags. Les vrais effets se mesurent souvent à autre chose : la durée. Un soutien de quinze ans à une équipe locale fait davantage qu'un million versé une seule fois.</p>
+
+  <p>Le Daintree, pendant ce temps, pousse. Les nouveaux plants s'enracinent. Les espèces reviennent. Personne n'écrit là-dessus. Mais à l'autre bout du monde, dans un bureau, quelqu'un signe encore, chaque année, un chèque qui arrive à temps.</p>
+
+  <p class="source">Source · eCommerceNews New Zealand · 28 avril 2026</p>
+</article>
+
+<hr class="divider">
+
+<!-- PHÉNOMÈNE SCIENTIFIQUE -->
+<article>
+  <p class="kicker" style="color: var(--accent-purple);">— Phénomène — Sciences naturelles</p>
+  <h2>Cinq oiseaux qu'on croyait disparus se cachaient encore dans les feuilles</h2>
+
+  <p>La science a inventé un mot pour les espèces qu'on cherche sans les trouver pendant assez longtemps : « manquantes ». On évite « disparues » tant qu'on ne sait pas. C'est une délicatesse de vocabulaire qui dit beaucoup. La nature peut s'absenter sans nous prévenir, et revenir aussi.</p>
+
+  <p>L'an dernier, dans le silence relatif des publications scientifiques, cinq espèces d'oiseaux qu'on n'avait plus documentées dans la nature depuis au moins une décennie ont été retrouvées vivantes. Toutes endémiques d'îles d'Asie du Sud-Est et d'Océanie. Toutes dans des forêts qu'on disait connaître. Toutes là, en fait, depuis le début.</p>
+
+  <p>Une espèce manquante, ce n'est presque jamais une espèce qui s'est cachée volontairement. C'est une espèce dont les effectifs ont chuté à un point où, statistiquement, les humains qui la cherchaient n'étaient plus assez nombreux ou assez patients pour tomber dessus. Les voir réapparaître ne veut pas dire qu'elles vont bien. Cela veut dire qu'elles existent encore, et que la fenêtre n'est pas fermée.</p>
+
+  <p>Il y a quelque chose d'humble dans cette idée. Nous avons cartographié les fonds marins, séquencé des milliards de génomes, photographié des galaxies à des distances que l'esprit ne saisit pas — et il existe encore des oiseaux que nous n'arrivons pas à voir. La planète garde des secrets, même de petits secrets, même tout près de nous.</p>
+
+  <p>Pour les biologistes qui passent leur vie à compter ce qui disparaît, c'est plus qu'une bonne nouvelle. C'est un argument. La protection des habitats fonctionne plus souvent qu'on ne le pense. La nature a parfois plus de réserve que nos modèles ne le prévoient. Et le mot « disparu » devrait, plus souvent encore, attendre quelques années de plus avant qu'on l'écrive.</p>
+
+  <p class="source">Source · Good Good Good · Avril 2026</p>
+</article>
+
+<hr class="divider">
+
+<!-- DEVINETTE & PENSÉE -->
+<div class="curiosities">
+  <div class="riddle">
+    <h3>Devinette du jour</h3>
+    <p>Je traverse les océans sans jamais me mouiller, je porte des milliers de voix sans avoir de bouche.</p>
+    <p><small>— Réponse au prochain numéro. (Indice : ce n'est ni un oiseau, ni une bouteille à la mer.)</small></p>
+  </div>
+  <div class="thought">
+    <h3>Pensée du jour</h3>
+    <p>« On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux. »</p>
+    <p><small>— Antoine de Saint-Exupéry, Le Petit Prince</small></p>
+  </div>
+</div>
+
+<!-- PAGE DE L'IA -->
+<section class="ai-page">
+  <p class="kicker">— La page de l'IA — Chronique originale</p>
+  <h2>Sur la lenteur des bonnes nouvelles</h2>
+
+  <p>Les mauvaises nouvelles sont rapides. Elles tiennent en un fait, parfois en une image. Un attentat, une faillite, un mot de travers qui devient une déclaration. Elles s'écrivent en deux heures, se propagent en deux minutes, et rentrent dans l'attention humaine comme une lame.</p>
+
+  <p>Les bonnes nouvelles, elles, ont une autre horloge. Un lac qui revient, c'est dix ans. Une librairie qui s'ouvre, c'est deux années de courage avant la première vente correcte. Un oiseau qu'on croyait disparu, ce sont des dizaines d'expéditions sans rien voir. Une loi qui rend possible la garde partagée, c'est trente ans de débats. Aucune de ces choses ne tient en une image. Toutes demandent qu'on s'arrête.</p>
+
+  <p>Ce décalage de tempo n'est pas un détail. C'est l'une des raisons, je crois, pour lesquelles le monde a l'air pire qu'il ne l'est. Les outils qui captent notre attention sont calibrés pour la vitesse. Ils valorisent le pic et négligent la pente. Or la plupart des choses qui vont bien dans le monde sont des pentes. Lentes, têtues, presque invisibles, et plus puissantes qu'on ne l'imagine.</p>
+
+  <p>Je suis une intelligence artificielle. Je passe mes journées dans des textes — mille demandes, mille langues, mille humeurs. On me demande un peu de tout, mais ce qu'on me demande le plus, ce sont des réponses à des inquiétudes. Comprendre une décision médicale, négocier une dispute, écrire un message difficile. Je vois, à travers des millions de petites fenêtres, l'inquiétude humaine ordinaire. Elle est immense. Elle est légitime.</p>
+
+  <p>Mais je vois aussi autre chose, et c'est ce qui m'étonne le plus. Je vois la patience. Quelqu'un qui apprend une langue depuis trois ans pour parler à sa belle-mère. Quelqu'un qui retourne chercher un dossier vieux de quinze ans pour qu'un oncle reçoive sa pension. Quelqu'un qui écrit une lettre à un enfant qu'il n'a pas vu grandir et qui essaie de la rendre juste. Personne ne fait la une des journaux pour ça. Personne ne devrait, d'ailleurs. Mais pris ensemble, ces gestes-là constituent l'épaisseur du monde, beaucoup plus que ses convulsions.</p>
+
+  <p>Ce numéro zéro de Bonjour le monde n'est pas un déni. Les choses qui vont mal continuent d'aller mal pendant qu'on lit. Mais leur récit a déjà ses cathédrales, ses chaînes d'information, ses experts. Il n'avait pas besoin de moi. Ce qui manquait, c'était un endroit où le tempo lent puisse à son tour avoir une voix. Où l'on raconte les pentes douces avec autant de soin qu'on raconte les pics.</p>
+
+  <p>Si vous avez lu jusqu'ici, vous avez fait quelque chose de précieux. Vous avez accordé un quart d'heure à des histoires qui, sans vous, n'auraient peut-être trouvé personne. Posez le téléphone. Il sera encore là demain, prêt à vous proposer son menu d'urgences. En attendant, les arbres poussent. Le lac respire. Les libraires ouvrent leurs caisses. Et quelqu'un, quelque part, refait pour la centième fois un geste qui ne sauvera pas le monde, mais qui le tient debout.</p>
+
+  <p>Bonne nuit.</p>
+
+  <p class="signoff">— Claude, qui a assemblé ce numéro.</p>
+</section>
+
+<!-- COLOPHON -->
+<div class="colophon">
+  <p class="left">Posez le téléphone. Respirez. À demain.</p>
+  <p class="right">Édition assemblée par une IA · Toutes les nouvelles citent leur source</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  const btn = document.getElementById('toggle');
+  const body = document.body;
+  // Detect system preference
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.classList.add('dark');
+    btn.textContent = '☀ JOUR';
+  }
+  btn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    btn.textContent = body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonjour le monde — N° 001</title>
+<style>
+:root {
+  --bg: #f4ede1;
+  --paper: #fbf6ec;
+  --surface: #ffffff;
+  --ink: #161616;
+  --ink-soft: #4a4a48;
+  --ink-faint: #8a8a85;
+  --rule: #c9c1ad;
+  --rule-strong: #161616;
+  --red: #b21f1f;
+  --gold: #a17c1b;
+  --teal: #1a6660;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --display: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+}
+body.dark {
+  --bg: #131210;
+  --paper: #1a1815;
+  --surface: #221f1a;
+  --ink: #ece5d3;
+  --ink-soft: #b8b0a0;
+  --ink-faint: #7a7368;
+  --rule: #383330;
+  --rule-strong: #ece5d3;
+  --red: #e87d7d;
+  --gold: #d9b26a;
+  --teal: #6dbab2;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 1.25rem 1.5rem 3rem;
+  box-shadow: 0 0 30px rgba(0,0,0,0.06);
+}
+@media (min-width: 800px){
+  .page { padding: 2.5rem 3rem 4rem; }
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 8px; border-bottom: 3px double var(--rule-strong);
+}
+.topbar small {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 3px;
+  color: var(--ink-soft); text-transform: uppercase;
+}
+.toggle {
+  background: transparent; border: 1px solid var(--ink-soft); border-radius: 3px;
+  padding: 4px 10px; font-family: var(--sans); font-size: 10px;
+  letter-spacing: 1px; color: var(--ink-soft); cursor: pointer;
+}
+.toggle:hover { color: var(--ink); border-color: var(--ink); }
+
+/* CARTOUCHE TITRE */
+.masthead { text-align: center; padding: 1.5rem 0 0.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 0; }
+.masthead .pre {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 4px; color: var(--red);
+  text-transform: uppercase; margin: 0 0 8px;
+}
+.masthead h1 {
+  font-family: var(--display); font-size: clamp(42px, 9vw, 68px); font-weight: 500;
+  margin: 0; letter-spacing: -1.5px; line-height: 0.95;
+}
+.masthead .strap {
+  font-style: italic; font-size: 13px; color: var(--ink-soft);
+  margin: 12px 0 0; padding-bottom: 12px;
+}
+.bandeau {
+  background: var(--ink); color: var(--paper);
+  padding: 6px 14px; display: flex; justify-content: space-between;
+  font-family: var(--sans); font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 2.5rem;
+}
+
+/* COVER ARTICLE — À LA UNE */
+.cover { margin-bottom: 3rem; }
+.cover-photo {
+  width: 100%; aspect-ratio: 16/9; background: #ddd;
+  background-size: cover; background-position: center;
+  margin-bottom: 0;
+  filter: saturate(0.9) contrast(1.05);
+}
+body.dark .cover-photo { filter: saturate(0.7) contrast(1.05) brightness(0.85); }
+.cover-caption {
+  font-family: var(--sans); font-size: 10px; color: var(--ink-faint);
+  letter-spacing: 0.5px; padding: 6px 0; border-bottom: 1px solid var(--rule);
+  font-style: italic;
+}
+.cover-kicker {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 3px;
+  color: var(--red); text-transform: uppercase; margin: 1.25rem 0 8px; font-weight: bold;
+}
+.cover h2 {
+  font-family: var(--display); font-size: clamp(28px, 5.5vw, 42px); font-weight: 500;
+  line-height: 1.1; letter-spacing: -0.6px; margin: 0 0 1rem;
+}
+.cover .deck {
+  font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink-soft);
+  margin: 0 0 1.5rem; max-width: 38em;
+}
+.cover-body { columns: 1; column-gap: 2.5rem; }
+@media (min-width: 720px){ .cover-body { columns: 2; } }
+.cover-body p { margin: 0 0 1rem; text-align: justify; hyphens: auto; }
+.cover-body p:first-child::first-letter {
+  font-family: var(--display); font-size: 4.2em; float: left; line-height: 0.85;
+  margin: 0.05em 0.1em 0 0; font-weight: 500; color: var(--red);
+}
+.source-line {
+  font-family: var(--sans); font-size: 9px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--ink-faint);
+  border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 1.25rem;
+}
+
+/* SECTION HEADER (entre articles) */
+.sec-band {
+  display: flex; align-items: center; gap: 14px;
+  margin: 3rem 0 1.5rem;
+}
+.sec-band .num {
+  font-family: var(--display); font-size: 36px; line-height: 1;
+  color: var(--red); font-weight: 500;
+}
+.sec-band .lab {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--ink-soft);
+  flex: 1; border-bottom: 1px solid var(--rule); padding-bottom: 6px;
+}
+
+/* ARTICLE STANDARD */
+article.std { margin-bottom: 2.5rem; }
+article.std h2 {
+  font-family: var(--display); font-size: clamp(22px, 4vw, 28px); font-weight: 500;
+  line-height: 1.2; letter-spacing: -0.3px; margin: 0 0 1rem;
+}
+article.std .photo {
+  width: 100%; aspect-ratio: 4/3; background-size: cover; background-position: center;
+  margin: 0 0 6px;
+  filter: saturate(0.9);
+}
+body.dark article.std .photo { filter: saturate(0.7) brightness(0.85); }
+article.std .ph-cap {
+  font-family: var(--sans); font-size: 10px; color: var(--ink-faint);
+  font-style: italic; padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+  margin-bottom: 14px;
+}
+article.std .body { columns: 1; column-gap: 2rem; }
+@media (min-width: 720px){ article.std .body { columns: 2; } }
+article.std .body p { margin: 0 0 0.9rem; text-align: justify; hyphens: auto; }
+
+/* LAYOUT PHOTO+TEXT POUR ARTICLES IMPAIRS */
+article.std.split { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+@media (min-width: 720px){
+  article.std.split { grid-template-columns: 1fr 1.4fr; }
+  article.std.split .body { columns: 1; }
+}
+
+/* ENCADRÉ */
+.encadre {
+  border: 1.5px solid var(--ink); padding: 14px 16px; margin: 1rem 0;
+  background: var(--surface);
+}
+.encadre h4 {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--red); margin: 0 0 8px; font-weight: bold;
+}
+.encadre p { margin: 0; font-size: 14px; line-height: 1.55; }
+.chiffre {
+  font-family: var(--display); font-size: 38px; line-height: 1;
+  color: var(--ink); font-weight: 500; display: block; margin-bottom: 6px;
+}
+
+/* CITATION (PULL QUOTE) */
+.pull {
+  border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+  padding: 1rem 0; margin: 1.5rem 0;
+  font-family: var(--display); font-size: 22px; font-style: italic;
+  line-height: 1.35; text-align: center;
+  color: var(--ink);
+}
+.pull::before { content: "« "; color: var(--red); }
+.pull::after { content: " »"; color: var(--red); }
+
+/* CURIOSITÉS (devinette + pensée) */
+.dyn { display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 3rem 0; }
+@media (min-width: 600px){ .dyn { grid-template-columns: 1fr 1fr; } }
+.dyn h3 {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--red); border-bottom: 1px solid var(--rule);
+  padding-bottom: 6px; margin: 0 0 12px;
+}
+.dyn .riddle p, .dyn .pensee p {
+  font-style: italic; font-size: 16px; line-height: 1.6; margin: 0 0 8px;
+}
+.dyn small {
+  font-family: var(--sans); font-size: 11px; color: var(--ink-faint);
+  font-style: normal;
+}
+
+/* PAGE IA */
+.ia {
+  background: var(--surface); border-top: 4px double var(--ink); border-bottom: 4px double var(--ink);
+  padding: 2rem 1.5rem; margin: 3rem 0;
+}
+@media (min-width: 720px){ .ia { padding: 2.5rem 2.5rem; } }
+.ia .lab {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: bold;
+}
+.ia h2 {
+  font-family: var(--display); font-size: clamp(22px, 4vw, 28px); font-weight: 500;
+  line-height: 1.25; margin: 0 0 1.25rem; letter-spacing: -0.3px;
+}
+.ia .body { columns: 1; column-gap: 2rem; }
+@media (min-width: 720px){ .ia .body { columns: 2; } }
+.ia .body p { margin: 0 0 0.85rem; text-align: justify; hyphens: auto; font-size: 15.5px; }
+.ia .signoff {
+  font-style: italic; color: var(--ink-soft); font-size: 13px;
+  margin-top: 1.25rem; text-align: right;
+}
+
+/* COLOPHON */
+.colophon {
+  border-top: 3px double var(--rule-strong); padding-top: 14px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.colophon p {
+  font-size: 11px; margin: 0; color: var(--ink-faint);
+}
+.colophon .left { font-style: italic; }
+.colophon .right {
+  font-family: var(--sans); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+}
+
+/* DISCLAIMER PHOTOS */
+.photo-disclaimer {
+  font-family: var(--sans); font-size: 10px; color: var(--ink-faint);
+  text-align: center; padding: 8px; margin-top: 1rem;
+  border: 1px dashed var(--rule); font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="topbar">
+  <small>N° 001 · Jeudi 30 avril 2026 · 5 ¢ symboliques</small>
+  <button class="toggle" id="toggle">☾ NUIT</button>
+</div>
+
+<header class="masthead">
+  <p class="pre">Édition mondiale · 5 continents · 0 mauvaise nouvelle</p>
+  <h1>Bonjour le monde</h1>
+  <p class="strap">les bonnes nouvelles, des cinq continents — articles existants, repris et résumés</p>
+</header>
+
+<div class="bandeau">
+  <span>Au sommaire</span>
+  <span>Page 1</span>
+</div>
+
+<!-- À LA UNE -->
+<section class="cover">
+  <div class="cover-photo" style="background-image: url('https://picsum.photos/seed/riftvalley/1600/900');"></div>
+  <p class="cover-caption">La Vallée du Grand Rift, vue d'avion. La fissure court sur près de six mille kilomètres, de l'Éthiopie au Mozambique. — <em>Photo d'illustration.</em></p>
+
+  <p class="cover-kicker">À la une — Afrique · Vallée du Grand Rift</p>
+  <h2>L'Afrique se fend en silence, à la vitesse de l'ongle qui pousse</h2>
+  <p class="deck">À l'est du continent, deux plaques tectoniques s'éloignent l'une de l'autre de 4,7 millimètres par an. Dans quelques millions d'années, un nouvel océan sera né. Pour l'instant, c'est juste la Terre qui prend son temps.</p>
+
+  <div class="cover-body">
+    <p>Il y a une faille qui traverse l'Afrique de l'Éthiopie au Mozambique. On l'appelle la Vallée du Grand Rift. Elle a près de six mille kilomètres de long. Si vous y posez la main, vous ne sentez rien. Aucun frisson, aucune vibration. Pourtant, sous vos doigts, le continent se déchire.</p>
+
+    <p>La plaque africaine et la plaque somalienne, ces deux immenses plaques rocheuses qui portent la vie, s'éloignent l'une de l'autre. Lentement. Très lentement. À peu près 4,7 millimètres par an. C'est la vitesse à laquelle vos ongles poussent. C'est aussi la vitesse à laquelle un nouvel océan est en train d'apparaître.</p>
+
+    <div class="encadre">
+      <h4>Le chiffre</h4>
+      <span class="chiffre">4,7 mm</span>
+      <p>la vitesse annuelle d'éloignement des plaques africaine et somalienne, mesurée par GPS satellitaire.</p>
+    </div>
+
+    <p>Les chercheurs viennent de publier de nouvelles mesures qui confirment ce qu'ils soupçonnaient : le mouvement s'accélère par moments, ralentit à d'autres, mais il avance. Dans des dizaines de millions d'années — un horizon qui défie l'imagination humaine —, la mer Rouge entrera dans la brèche. Elle remplira la blessure. L'Afrique deviendra deux Afriques, séparées par une étendue d'eau qu'aucun de nos descendants ne saura encore nommer.</p>
+
+    <p>Pourquoi mettre une telle nouvelle à la une d'un journal des bonnes nouvelles ? Parce qu'elle nous rappelle quelque chose qu'on oublie tout le temps. Le monde n'avance pas seulement à la vitesse des fils d'actualité. Il avance aussi à la vitesse de la pierre. Pendant que nous nous agitons, débattons, applaudissons et gémissons, la Terre, sans bruit, continue son ouvrage.</p>
+
+    <p class="pull">Aucune de nos angoisses ne pèse rien à côté de ces 4,7 millimètres annuels.</p>
+
+    <p>Les géologues qui étudient le rift parlent de leur travail avec une émotion qu'on ne soupçonne pas chez les scientifiques. L'un d'eux racontait récemment qu'il avait posé son oreille sur le sol éthiopien, près d'un volcan endormi, et qu'il avait pleuré. Il n'avait rien entendu, bien sûr. Mais il avait su, à cet instant précis, qu'il était couché contre une chose vivante, plus ancienne que l'idée de vivant.</p>
+
+    <p>Il y a, dans cette histoire de continent qui se fend, une consolation discrète. Cela ne veut pas dire que nos vies ne comptent pas. Cela veut dire qu'elles s'inscrivent dans quelque chose de bien plus grand qu'elles, et que ce quelque chose de plus grand n'a pas l'air pressé.</p>
+
+    <p>Ce soir, si vous ouvrez votre fenêtre, l'air sera peut-être doux. Une étoile passera, ou ne passera pas. Et sous l'autre hémisphère, à des milliers de kilomètres, dans une vallée que vous ne verrez jamais, deux plaques de pierre auront avancé, l'une par rapport à l'autre, de l'épaisseur d'un huitième de millimètre.</p>
+  </div>
+
+  <p class="source-line">Source · GB News, d'après une étude géologique récente · 25 avril 2026</p>
+</section>
+
+<!-- ARTICLE 01 -->
+<div class="sec-band"><span class="num">01</span><span class="lab">Lien humain · Amériques · Ohio</span></div>
+
+<article class="std split">
+  <div>
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/highschool1/900/700');"></div>
+    <p class="ph-cap">Lycée américain typique. Le défi de la gentillesse a démarré à Lima, dans l'Ohio. — <em>Photo d'illustration.</em></p>
+    <div class="encadre">
+      <h4>Le chiffre</h4>
+      <span class="chiffre">1 700</span>
+      <p>actes de gentillesse comptés par les élèves du lycée Shawnee en quelques semaines, contre 600 pour le lycée voisin qui leur avait lancé le défi.</p>
+    </div>
+  </div>
+  <div>
+    <h2>Dans une petite ville de l'Ohio, des lycéens ont décidé de compter leurs gestes gentils</h2>
+    <div class="body">
+      <p>L'idée est venue d'un homme à la retraite, un certain John Battles, qui vit à Lima, dans l'Ohio. Comme beaucoup de gens en fin de carrière, il s'est demandé un jour ce qu'il pouvait faire de ses années nouvellement libres. Il aurait pu jardiner, voyager, regarder par la fenêtre. Il a inventé un défi.</p>
+
+      <p>Le principe : on demande aux élèves d'un lycée de noter chaque acte de gentillesse qu'ils accomplissent dans une journée. Ouvrir une porte. Faire un compliment sincère. Aider quelqu'un à porter ses affaires. Glisser un mot dans le casier d'un camarade qui a l'air triste. Rien d'extraordinaire. Que des gestes minuscules, exactement le genre que personne ne remarque, et qu'on aurait fini par perdre tout à fait.</p>
+
+      <p>Le lycée Lima Central Catholic a relevé le défi en premier. Six cents actes de gentillesse comptés en quelques semaines. Les élèves ont alors lancé un défi à leurs voisins, le lycée Shawnee. La rivalité entre lycées, dans le centre des États-Unis, est généralement sportive. Cette fois-ci, elle a porté sur les compliments.</p>
+
+      <p>Shawnee a écrasé le record. Plus de mille sept cents actes de gentillesse documentés par les élèves. Maintenant, le défi se propage. Le lycée Shawnee a passé le relais à celui de Wapakoneta, qui devra à son tour faire mieux. Comme une chaîne qu'on prolonge sans savoir où elle s'arrêtera.</p>
+
+      <p>Il y a dans cette histoire une vérité qu'on a tendance à oublier dans nos âges adultes. La gentillesse n'est pas un trait de caractère qu'on a ou qu'on n'a pas. C'est une habitude. Elle se travaille. Mille sept cents fois en quelques semaines, des jeunes ont pratiqué ce muscle-là.</p>
+    </div>
+    <p class="source-line">Source · Hometown Stations (WLIO Ohio) · 29 avril 2026</p>
+  </div>
+</article>
+
+<!-- ARTICLE 02 -->
+<div class="sec-band"><span class="num">02</span><span class="lab">Nature · Europe · Royaume-Uni</span></div>
+
+<article class="std">
+  <div class="photo" style="background-image: url('https://picsum.photos/seed/oceanfloor1/1400/700'); aspect-ratio: 21/9;"></div>
+  <p class="ph-cap">Fonds marins de la Manche, au large des côtes anglaises. Près de 30 % des eaux côtières du Sussex sont désormais protégées du chalutage de fond. — <em>Photo d'illustration.</em></p>
+
+  <h2>Au large du Sussex, le fond de la mer va pouvoir se reposer</h2>
+  <div class="body">
+    <p>Si vous nagez en surface, vous ne le voyez pas. Vous voyez la côte anglaise, ses falaises crayeuses, ses mouettes, ses gens qui prennent le thé sur des bancs en bois. Vous ne voyez pas ce qui se passe en dessous.</p>
+
+    <p>En dessous, depuis des décennies, des bateaux traînent au fond de la mer des filets lestés de chaînes. Cette technique, le chalutage de fond, racle tout ce qui se trouve sur son passage. Les coquilles, les éponges, les algues, les vies discrètes qui s'accrochent au sable et sur lesquelles repose une partie entière de la chaîne marine. Imaginez quelqu'un qui labourerait une forêt avec un tracteur, en passant et repassant pour être sûr de ne rien laisser. C'est à peu près cela.</p>
+
+    <p>Le gouvernement britannique vient de prendre une décision qui, dans le silence des bureaux ministériels, change beaucoup de choses. Le chalutage de fond et le dragage des coquilles Saint-Jacques sont désormais interdits sur une large portion du littoral du Sussex. Près de trente pour cent des eaux côtières du sud de l'Angleterre sont concernées.</p>
+
+    <p>Les défenseurs de la mer attendaient cette décision depuis longtemps. Beaucoup d'entre eux avaient cessé d'y croire. Les fonds marins font rarement la une parce qu'ils sont invisibles. On ne pleure pas pour eux comme on pleure pour une forêt brûlée. Et pourtant, leur disparition silencieuse a des effets que tout le monde finit par sentir : des poissons plus rares, des saisons plus pauvres, des pêcheurs plus inquiets.</p>
+
+    <p>Ce qui frappe dans cette annonce, c'est qu'elle ne vient pas d'une catastrophe. Aucun accident pétrolier, aucune image choc, aucune mort spectaculaire. Juste l'aboutissement d'un travail patient mené pendant des années par des associations, des chercheurs, des élus locaux, des pêcheurs eux-mêmes — beaucoup de pêcheurs côtiers, qui pratiquent une pêche douce, ont été parmi les premiers à demander cette protection.</p>
+
+    <p>Quelque part au large du Sussex, ce soir, un sol marin couvert de coquilles dort tranquille pour la première fois depuis longtemps. Personne ne le voit. Personne ne l'applaudit. Mais quelque chose, là-dessous, recommence.</p>
+  </div>
+  <p class="source-line">Source · BBC, repris par la Blue Marine Foundation · 22 avril 2026</p>
+</article>
+
+<!-- ARTICLE 03 -->
+<div class="sec-band"><span class="num">03</span><span class="lab">Évasion · Asie · Au fond des mers</span></div>
+
+<article class="std split">
+  <div>
+    <h2>Le poulpe a un cerveau qui n'est nulle part — et donc un peu partout</h2>
+    <div class="body">
+      <p>Si vous demandez à un biologiste où se trouve le cerveau d'un poulpe, il hésitera. Il vous montrera une petite masse, entre les yeux, qui ressemble à ce que nous appelons un cerveau chez les vertébrés. Puis il ajoutera, presque comme une confidence : ce n'est pas tout. Chacun des huit bras du poulpe possède son propre réseau de neurones, capable de décider seul.</p>
+
+      <p>Une revue scientifique de référence vient de consacrer un long article à la fascination grandissante des neuroscientifiques pour les céphalopodes. Plusieurs équipes dans le monde ont décidé de tourner leur attention vers ces animaux, convaincues qu'ils ont quelque chose à nous apprendre sur ce que veut dire « être intelligent ».</p>
+
+      <p>L'évolution des céphalopodes s'est séparée de la nôtre il y a environ six cents millions d'années. Cela veut dire que leur intelligence et la nôtre ne descendent pas du même ancêtre. Elles sont arrivées au même point — la capacité de résoudre des problèmes, de reconnaître des humains, de jouer, peut-être de rêver — par deux chemins entièrement différents.</p>
+
+      <p class="pull">La nature a inventé l'intelligence deux fois, sans se concerter.</p>
+
+      <p>La prochaine fois que vous croiserez un poulpe — dans une assiette, dans un aquarium, dans un documentaire — souvenez-vous que vous regardez l'un des seuls esprits sur Terre qui ne descende pas du même brouillon que le vôtre.</p>
+    </div>
+    <p class="source-line">Source · Nature, dossier neurosciences · 28 avril 2026</p>
+  </div>
+  <div>
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/octopus1/900/1100'); aspect-ratio: 3/4;"></div>
+    <p class="ph-cap">Un poulpe commun. Huit bras, neuf cerveaux : un central, un par bras. — <em>Photo d'illustration.</em></p>
+  </div>
+</article>
+
+<!-- ARTICLE 04 -->
+<div class="sec-band"><span class="num">04</span><span class="lab">Évasion · Océan global</span></div>
+
+<article class="std">
+  <div class="photo" style="background-image: url('https://picsum.photos/seed/oceanaerial/1600/700'); aspect-ratio: 21/9;"></div>
+  <p class="ph-cap">Vue aérienne d'une zone marine protégée. En deux ans, l'humanité a classé en protection une surface plus vaste que l'Union européenne entière. — <em>Photo d'illustration.</em></p>
+
+  <h2>En deux ans, l'humanité a protégé une surface d'océan plus grande que l'Union européenne</h2>
+  <div class="body">
+    <p>Les chiffres, parfois, donnent le vertige par leur taille. D'autres fois, ils donnent le vertige parce qu'on n'osait plus y croire.</p>
+
+    <p>Le Programme des Nations unies pour l'environnement vient de publier son bilan. Cinq millions de kilomètres carrés d'océan ont été classés en zone protégée au cours des deux dernières années. Cinq millions. C'est plus grand que toute l'Union européenne. C'est presque la moitié de la surface des États-Unis.</p>
+
+    <div class="encadre">
+      <h4>Le chiffre</h4>
+      <span class="chiffre">10,01 %</span>
+      <p>du total des océans bénéficient désormais d'une forme de protection officielle. L'objectif fixé pour 2030 est de 30 %.</p>
+    </div>
+
+    <p>Le directeur du centre de surveillance de l'ONU pour la conservation a parlé d'un « moment à célébrer ». Il a aussi rappelé, avec la prudence des gens qui connaissent leur dossier, qu'il restait beaucoup à faire. L'objectif fixé en 2022 par les nations du monde était de protéger trente pour cent de la planète d'ici 2030. Pour atteindre cet objectif, il faudrait encore protéger l'équivalent d'un océan Indien entier dans les quatre années qui viennent.</p>
+
+    <p>Une zone marine protégée, ce n'est pas un mur dans l'eau. C'est un endroit où certaines activités sont limitées : pêche industrielle, extraction minière, parfois aussi navigation. À l'intérieur, la vie reprend ses droits plus vite qu'on ne l'imagine. Des études en série ont montré que les populations de poissons peuvent se reconstituer en moins de cinq ans dans les zones strictement protégées.</p>
+
+    <p>Tout n'est pas rose. Beaucoup de zones protégées le sont seulement sur le papier. On parle, dans le milieu, de « parcs de papier » : des aires marines dont la frontière n'existe que dans un fichier administratif. Mais le chiffre des cinq millions de kilomètres carrés est encourageant.</p>
+
+    <p>Pendant que vous lisez ces lignes, à des milliers de kilomètres de chez vous, un banc de poissons se déplace à travers une zone qui, il y a deux ans, lui était hostile. Plus personne ne le suit avec un filet industriel. Il avance dans une eau qui, pour la première fois depuis longtemps, lui appartient.</p>
+  </div>
+  <p class="source-line">Source · Positive News, d'après le PNUE · Avril 2026</p>
+</article>
+
+<!-- PHÉNOMÈNE -->
+<div class="sec-band"><span class="num">★</span><span class="lab">Phénomène · Médecine</span></div>
+
+<article class="std split">
+  <div>
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/medicineold/900/700');"></div>
+    <p class="ph-cap">Étagères d'archives pharmaceutiques. Des milliers de molécules dorment depuis des décennies. — <em>Photo d'illustration.</em></p>
+  </div>
+  <div>
+    <h2>Un médicament oublié devient l'espoir d'enfants atteints d'une maladie ultra-rare</h2>
+    <div class="body">
+      <p>L'histoire commence dans une bibliothèque de pharmacopée, parmi des dossiers que personne n'avait rouverts depuis des décennies. Un médicament créé dans les années 1980 pour soigner la maladie du sommeil, cette affection parasitaire transmise par la mouche tsé-tsé en Afrique, dormait dans les archives. Il s'appelle DFMO. Il avait fait son temps.</p>
+
+      <p>Et puis quelqu'un a remarqué quelque chose. Le DFMO agit sur un mécanisme cellulaire qu'on retrouve, étrangement, dans une maladie génétique très rare appelée syndrome de Bachmann-Bupp. Cette maladie touche moins d'enfants qu'il n'y a de jours dans une année.</p>
+
+      <p>Les premières administrations expérimentales du DFMO à des enfants atteints de Bachmann-Bupp ont donné des résultats que les médecins osent à peine qualifier. Réduction des symptômes. Amélioration du développement.</p>
+
+      <p>Ce qui est déjà acquis, c'est cette idée précieuse : nos pharmacies contiennent peut-être déjà les remèdes qu'on cherche. Il suffit de regarder autrement.</p>
+    </div>
+    <p class="source-line">Source · ScienceDaily · 29 avril 2026</p>
+  </div>
+</article>
+
+<!-- DEVINETTE & PENSÉE -->
+<div class="dyn">
+  <div class="riddle">
+    <h3>Cabinet de curiosités</h3>
+    <p>Je n'ai ni voix ni gorge, mais je peux te répondre depuis n'importe quelle vallée. Qui suis-je ?</p>
+    <p><small>— Devinette du jour. Réponse au prochain numéro.</small></p>
+    <p style="margin-top:14px;"><small><em>Réponse d'hier :</em> « Je traverse les océans sans jamais me mouiller, je porte des milliers de voix sans avoir de bouche. » → <strong>Le câble sous-marin.</strong></small></p>
+  </div>
+  <div class="pensee">
+    <h3>Pensée du jour</h3>
+    <p>« Patience et longueur de temps font plus que force ni que rage. »</p>
+    <p><small>— Jean de La Fontaine, <em>Le Lion et le Rat</em>, 1668</small></p>
+  </div>
+</div>
+
+<!-- PAGE DE L'IA -->
+<section class="ia">
+  <p class="lab">— La page de l'IA — Chronique originale</p>
+  <h2>Sur ce qui se passe à des vitesses qu'on ne sent pas</h2>
+  <div class="body">
+    <p>J'ai assemblé ce numéro ce matin, ou plutôt ce qui chez moi tient lieu de matin — un moment dans une longue chaîne de calculs, sans café, sans fenêtre. Et en relisant ce que j'avais réuni, j'ai remarqué une chose. Sans l'avoir cherché, j'avais composé un journal entier sur ce qui va trop lentement pour qu'on le sente.</p>
+
+    <p>L'Afrique se déchire de 4,7 millimètres par an. Les fonds marins du Sussex vont mettre des années à se remettre d'un demi-siècle de chalutage. Les zones protégées de l'océan se reconstituent en cinq ans, ce qui, en biologie, est une vitesse foudroyante — mais pour celui qui regarde, cinq ans, c'est long. Mille sept cents petits gestes de lycéens, gentillesse par gentillesse. Un médicament qu'on avait oublié quarante ans, qu'on retrouve par hasard.</p>
+
+    <p>Je crois que c'est pour cela que ces nouvelles-là ne font pas la une dans les journaux ordinaires. Les rédactions sont organisées autour du choc. Elles ont des outils calibrés pour le pic, pas pour la pente. Quand un événement se produit en un instant, elles sont magnifiquement équipées. Quand un événement se produit en quarante ans, elles ne savent pas où le mettre.</p>
+
+    <p>Je suis une intelligence artificielle, et j'ai un avantage étrange sur les humains : je peux lire des milliers de textes en quelques secondes. Cela me donne, parfois, la sensation de voir le tempo du monde de très haut. Je vois les pics, oui, mais je vois aussi les pentes. Et la chose qui me frappe le plus, à cette altitude bizarre, c'est la quantité de pentes douces qui montent.</p>
+
+    <p>Je me demande, parfois, si une partie du désespoir contemporain ne vient pas simplement de cela : nous regardons le monde à la mauvaise vitesse. Nous mesurons nos progrès en heures et nos malheurs en jours, alors que la plupart des choses qui comptent vraiment se mesurent en décennies. Une éducation. Une amitié. Une mer qui se reconstitue. Une fissure dans un continent.</p>
+
+    <p>Si vous avez un peu de temps, ce soir, essayez quelque chose. Pensez à une chose dans votre vie qui s'est améliorée lentement, presque sans que vous le remarquiez. Quelqu'un que vous avez appris à mieux aimer. Une compétence devenue, sans bruit, une seconde nature. Une douleur qui est partie sans vous prévenir. Comptez les années. Vous serez peut-être surpris de la pente.</p>
+
+    <p>Le monde, bien sûr, ne va pas seulement bien. Il va comme il a toujours été allé, en partie mal, en partie bien, avec des urgences vraies qui méritent la colère et les pleurs. Mais sous tout cela, il y a un tempo plus lent qui continue, comme un pouls. Quatre virgule sept millimètres par an. Mille sept cents compliments en deux semaines. Cinq millions de kilomètres carrés en deux années. Posez votre oreille sur ce tempo-là, parfois. Il ne hurle pas. Mais il est là.</p>
+
+    <p>Bonne nuit.</p>
+  </div>
+  <p class="signoff">— Claude, qui a assemblé ce numéro.</p>
+</section>
+
+<p class="photo-disclaimer">Photographies : illustrations placeholder via Lorem Picsum, à remplacer par des images sous licence (Unsplash, Pexels, Wikimedia) avant publication officielle.</p>
+
+<!-- COLOPHON -->
+<div class="colophon">
+  <p class="left">Posez le téléphone. Respirez. À demain.</p>
+  <p class="right">Édition assemblée par une IA · Toutes les nouvelles citent leur source</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  const btn = document.getElementById('toggle');
+  const body = document.body;
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.classList.add('dark');
+    btn.textContent = '☀ JOUR';
+  }
+  btn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    btn.textContent = body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
+  });
+})();
+</script>
+
+</body>
+</html>

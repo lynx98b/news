@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonjour le monde</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* L'index charge la dernière édition dans l'iframe */
+  body { margin: 0; padding: 0; }
+  #latest-frame {
+    width: 100%;
+    border: 0;
+    display: block;
+    min-height: 100vh;
+  }
+  .loader {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: var(--display, Georgia, serif);
+    color: var(--ink-soft, #4a4a48);
+    font-style: italic;
+  }
+  .archives-page {
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--paper, #fbf6ec);
+    padding: 2rem 1.5rem 3rem;
+  }
+  @media (min-width: 800px){ .archives-page { padding: 2.5rem 3rem; } }
+</style>
+</head>
+<body>
+
+<div id="content">
+  <div class="loader">Chargement de l'édition du jour…</div>
+</div>
+
+<script>
+(async function(){
+  try {
+    const res = await fetch('data/editions.json');
+    const data = await res.json();
+    const editions = data.editions || [];
+    if (editions.length === 0) {
+      document.getElementById('content').innerHTML =
+        '<div class="loader">Aucune édition disponible.</div>';
+      return;
+    }
+
+    const latest = editions[0];
+    const archives = editions.slice(1);
+
+    // Charge l'édition du jour
+    const frameRes = await fetch(latest.fichier);
+    let html = await frameRes.text();
+
+    // Injecte le bandeau archives juste avant le colophon
+    const archivesHtml = renderArchives(archives);
+    if (html.includes('<div class="colophon">')) {
+      html = html.replace('<div class="colophon">', archivesHtml + '<div class="colophon">');
+    } else {
+      html += archivesHtml;
+    }
+
+    document.getElementById('content').innerHTML = extractBody(html);
+
+    // Réinstalle le toggle jour/nuit
+    const btn = document.getElementById('toggle');
+    if (btn) {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        btn.textContent = '☀ JOUR';
+      }
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        btn.textContent = document.body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
+      });
+    }
+  } catch(err) {
+    document.getElementById('content').innerHTML =
+      '<div class="loader">Erreur de chargement : ' + err.message + '</div>';
+  }
+
+  function extractBody(html) {
+    const match = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    return match ? match[1] : html;
+  }
+
+  function renderArchives(archives) {
+    if (archives.length === 0) return '';
+    let items = archives.map(e => `
+      <li>
+        <a href="${e.fichier}">
+          <span class="meta">N° ${e.numero} · ${e.date_fr}</span>
+          ${e.titre_une}
+        </a>
+      </li>`).join('');
+    return `
+      <nav class="archives-nav">
+        <h3>Numéros précédents</h3>
+        <ul class="archives-list">${items}</ul>
+      </nav>`;
+  }
+})();
+</script>
+
+</body>
+</html>
