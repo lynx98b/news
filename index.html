@@ -48,8 +48,11 @@
       return;
     }
 
-    const latest = editions[0];
-    const archives = editions.slice(1);
+    // Cherche l'édition dont la date correspond à aujourd'hui
+    const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+    const todayEdition = editions.find(e => e.date === today);
+    const latest = todayEdition || editions[0];
+    const archives = editions.filter(e => e !== latest);
 
     // Charge l'édition du jour
     const frameRes = await fetch(latest.fichier);
@@ -63,6 +66,7 @@
       html += archivesHtml;
     }
 
+    document.title = 'Bonjour le monde — N° ' + latest.numero + ' · ' + latest.date_fr;
     document.getElementById('content').innerHTML = extractBody(html);
 
     // Réinstalle le toggle jour/nuit
