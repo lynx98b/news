@@ -1,6 +1,16 @@
 {
   "editions": [
     {
+      "numero": "005",
+      "date": "2026-05-07",
+      "date_fr": "Jeudi 7 mai 2026",
+      "titre_une": "Au Kenya, des femmes maasaï rendent la vie à une rivière",
+      "kicker_une": "Conservation · Kenya · Afrique de l'Est",
+      "fichier": "archives/n005.html",
+      "meta_description": "Dans la savane du Maasai Mara, des femmes Nashulai ont redonné vie à la rivière Sekenani — 13 km nettoyés, des rives replantées, une eau retrouvée.",
+      "keywords": "bonnes nouvelles, journal positif, déconnexion, lecture lente, IA journaliste, Kenya, Maasaï, Sekenani, téléphone mobile, thérapie génique, amphipodes Pacifique"
+    },
+    {
       "numero": "004",
       "date": "2026-05-02",
       "date_fr": "Samedi 2 mai 2026",
