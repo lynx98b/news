@@ -175,6 +175,60 @@
   margin: 0 0 1rem;
   font-weight: bold;
 }
+/* Tu connais ? */
+.tu-connais {
+  border-top: 2px solid rgba(232,160,32,0.4);
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+}
+.tu-connais-header {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c8881a;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+.tu-connais h2 {
+  font-family: var(--display);
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 500;
+  margin: 0 0 1rem;
+  line-height: 1.25;
+}
+.tu-connais p { font-size: 14.5px; line-height: 1.65; margin: 0 0 1rem; }
+.tu-connais .proverb-box {
+  font-style: italic;
+  font-size: 14px;
+  border-left: 3px solid rgba(232,160,32,0.5);
+  padding-left: 1rem;
+  color: var(--ink-soft);
+  margin: 1rem 0;
+}
+.tu-connais .proverb-box cite {
+  display: block;
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+.tu-connais .book-rec {
+  display: flex;
+  gap: 10px;
+  background: rgba(240,222,160,0.12);
+  border: 0.5px solid rgba(232,160,32,0.3);
+  border-radius: 2px;
+  padding: 10px 12px;
+  margin-top: 0.75rem;
+}
+.tu-connais .book-icon { font-size: 20px; flex-shrink: 0; line-height: 1.3; }
+.tu-connais .book-body { font-family: var(--sans); font-size: 11px; color: var(--ink-soft); line-height: 1.5; }
+.tu-connais .book-body strong { display: block; font-size: 12.5px; color: var(--ink); font-family: var(--display); font-style: italic; margin-bottom: 2px; }
+
 .archives-side ul { list-style: none; padding: 0; margin: 0; }
 .archives-side li { border-bottom: 0.5px solid var(--rule); padding: 8px 0; }
 .archives-side a {
@@ -246,6 +300,24 @@
       </div>
     </div>
   </div>
+  <!-- Tu connais ? — rubrique fixe, mise à jour à chaque édition -->
+  <div class="tu-connais" id="tu-connais">
+    <p class="tu-connais-header">☀ Tu connais ? — Portrait de pays · Édition d'été</p>
+    <h2>Palau — l'archipel qui a choisi l'océan plutôt que l'argent</h2>
+    <p>Palau est un chapelet de 340 îles dans le Pacifique occidental, entre les Philippines et la Papouasie. Avec 18 000 habitants, c'est l'un des plus petits États souverains du monde — et l'un des plus cohérents : en 2015, le pays a fermé 80 % de ses eaux territoriales à toute pêche commerciale. Sa "Jellyfish Lake" abrite des millions de méduses dorées sans venin, que l'on traverse à la nage dans un silence étrange.</p>
+    <div class="proverb-box">
+      « Une île seule ne fait pas un archipel. »
+      <cite>— Proverbe palauan</cite>
+    </div>
+    <div class="book-rec">
+      <span class="book-icon">📖</span>
+      <div class="book-body">
+        <strong>La Longue Route — Bernard Moitessier (1971)</strong>
+        Un marin français abandonne une course autour du monde pour continuer seul dans le Pacifique — parce que l'océan valait plus que la victoire. Le grand livre d'été.
+      </div>
+    </div>
+  </div>
+
   <div class="colophon">
     <p class="left">Posez le téléphone. Respirez. À demain.</p>
     <p class="right">Édition assemblée par une IA · Toutes les nouvelles citent leur source</p>
