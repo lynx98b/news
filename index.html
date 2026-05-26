@@ -1,246 +1,331 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- ==================== SEO CRITIQUE ==================== -->
-  <title>DZCheck — Au Kenya, des femmes maasaï rendent la vie à une rivière (N°005)</title>
-  <meta name="description" content="Édition N°005 : Au Kenya, des femmes maasaï restaurent une rivière. Spécial : L'Algérie rouvre ses dunes au tourisme. Les bonnes nouvelles d'Afrique et du monde.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://dzcheck.com/">
-  <meta name="language" content="French">
-  <meta name="author" content="DZCheck">
-  
-  <!-- Open Graph pour les réseaux sociaux -->
-  <meta property="og:title" content="DZCheck — Au Kenya, des femmes maasaï rendent la vie à une rivière">
-  <meta property="og:description" content="Les bonnes nouvelles d'Afrique et du monde. Édition N°005.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://dzcheck.com/">
-  <meta property="og:locale" content="fr_FR">
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DZCheck — Les bonnes nouvelles d'Afrique">
-  <meta name="twitter:description" content="Édition N°005 : Kenya, Algérie, et les bonnes nouvelles des cinq continents.">
-  <!-- ====================================================== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="assets/style.css">
-  <style>
-    /* ===== VOTRE DESIGN EXISTANT (inchangé) ===== */
-    :root {
-      --paper: #fffdf8;
-      --ink: #1a1a1a;
-      --ink-soft: #3a3a3a;
-      --ink-faint: #6a6a6a;
-      --red: #c23b22;
-      --gold: #b8860b;
-      --rule: #e2e0db;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      --display: Georgia, 'Times New Roman', Times, serif;
-    }
-    body.dark {
-      --paper: #1a1a1a;
-      --ink: #f0f0f0;
-      --ink-soft: #d0d0d0;
-      --ink-faint: #a0a0a0;
-      --rule: #333;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.5; transition: background 0.2s, color 0.2s; }
-    .page { max-width: 1200px; margin: 0 auto; padding: 1rem 1.5rem 3rem; }
-    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2rem; }
-    .toggle { background: none; border: 1px solid var(--rule); padding: 4px 10px; cursor: pointer; font-size: 10px; letter-spacing: 1px; color: var(--ink); border-radius: 20px; transition: 0.2s; }
-    .masthead { text-align: center; margin: 2rem 0 1rem; }
-    .pre { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
-    .masthead h1 { font-family: var(--display); font-size: clamp(32px, 6vw, 56px); font-weight: 500; letter-spacing: -1px; }
-    .strap { font-size: 12px; color: var(--ink-soft); font-style: italic; margin-top: 0.5rem; }
-    .bandeau { background: var(--rule); padding: 0.5rem 1rem; text-align: center; font-size: 11px; letter-spacing: 1px; margin: 1.5rem 0; text-transform: uppercase; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
-    .home-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin: 2rem 0 0; }
-    @media (min-width: 720px) { .home-grid { grid-template-columns: 1.65fr 1fr; gap: 0; } }
-    .card-today { border-top: 4px solid var(--ink); padding: 1.5rem 0 2rem; }
-    @media (min-width: 720px) { .card-today { padding-right: 2.5rem; border-right: 1px solid var(--rule); } }
-    .card-label { font-family: var(--sans); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; margin: 0 0 1rem; }
-    .card-today .card-label { color: var(--red); }
-    .card-num { font-family: var(--display); font-size: 96px; line-height: 1; color: var(--rule); font-weight: 500; display: block; letter-spacing: -4px; margin-bottom: -6px; }
-    .card-kicker { font-family: var(--sans); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 10px; }
-    .card-today h2 { font-family: var(--display); font-size: clamp(26px, 4.5vw, 38px); font-weight: 500; line-height: 1.1; letter-spacing: -0.5px; margin: 0 0 0.75rem; }
-    .card-date { font-family: var(--sans); font-size: 10px; color: var(--ink-faint); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.75rem; }
-    .btn-primary { display: inline-block; font-family: var(--sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 11px 22px; text-decoration: none; transition: background 0.2s; }
-    .btn-primary:hover { background: var(--red); }
-    .right-col { padding: 0; }
-    @media (min-width: 720px) { .right-col { padding: 0 0 0 2rem; } }
-    .card-special { border-top: 4px solid var(--gold); padding: 1.5rem 0 2rem; margin-top: 2rem; }
-    @media (min-width: 720px) { .card-special { margin-top: 0; } }
-    .card-special .card-label { color: var(--gold); }
-    .card-special h3 { font-family: var(--display); font-size: clamp(18px, 2.8vw, 22px); font-weight: 500; line-height: 1.25; margin: 0 0 1rem; }
-    .btn-secondary { display: inline-block; font-family: var(--sans); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); border: 1px solid var(--ink); padding: 8px 14px; text-decoration: none; transition: all 0.2s; }
-    .btn-secondary:hover { color: var(--paper); background: var(--ink); }
-    .archives-side { border-top: 2px solid var(--rule); padding-top: 1.25rem; margin-top: 2rem; }
-    .archives-side h3 { font-family: var(--sans); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin: 0 0 1rem; font-weight: bold; }
-    .archives-side ul { list-style: none; padding: 0; margin: 0; }
-    .archives-side li { border-bottom: 0.5px solid var(--rule); padding: 8px 0; }
-    .archives-side a { color: var(--ink); text-decoration: none; font-family: var(--display); font-size: 14px; line-height: 1.4; display: block; }
-    .archives-side a:hover { color: var(--red); }
-    .archives-side .meta { font-family: var(--sans); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 2px; }
-    .colophon { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; flex-wrap: wrap; font-size: 9px; letter-spacing: 1px; color: var(--ink-faint); gap: 1rem; }
-    .loader { text-align: center; padding: 4rem 2rem; font-style: italic; color: var(--ink-soft); }
-    
-    /* Cache SEO : invisible mais lu par Google */
-    .seo-content { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-  </style>
+<!-- ============ SEO DE BASE ============ -->
+<title>Bonjour le monde — Bonnes nouvelles des cinq continents</title>
+<meta name="description" content="Un journal de bonnes nouvelles des cinq continents. Articles apaisants, faits vérifiés, sources citées. Nouvelle édition chaque jour.">
+<meta name="keywords" content="bonnes nouvelles, journal positif, déconnexion, lecture lente, IA journaliste, cinq continents, actualités positives">
+<meta name="author" content="Bonjour le monde">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://dzcheck.com/">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="apple-touch-icon" href="assets/logo.svg">
+
+<!-- ============ OPEN GRAPH ============ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bonjour le monde — Bonnes nouvelles des cinq continents">
+<meta property="og:description" content="Un journal de bonnes nouvelles des cinq continents. Articles apaisants, faits vérifiés, sources citées. Nouvelle édition chaque jour.">
+<meta property="og:image" content="https://dzcheck.com/assets/img/n006-une.jpg">
+<meta property="og:url" content="https://dzcheck.com/">
+<meta property="og:site_name" content="Bonjour le monde">
+<meta property="og:locale" content="fr_FR">
+
+<!-- ============ TWITTER CARD ============ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bonjour le monde — Bonnes nouvelles des cinq continents">
+<meta name="twitter:description" content="Un journal de bonnes nouvelles des cinq continents. Articles apaisants, faits vérifiés, sources citées.">
+<meta name="twitter:image" content="https://dzcheck.com/assets/img/n006-une.jpg">
+
+<!-- ============ SCHEMA.ORG JSON-LD ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Bonjour le monde",
+  "url": "https://dzcheck.com/",
+  "description": "Journal de bonnes nouvelles des cinq continents — articles apaisants, faits vérifiés, sources citées. Nouvelle édition chaque jour.",
+  "inLanguage": "fr",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bonjour le monde",
+    "url": "https://dzcheck.com/",
+    "logo": { "@type": "ImageObject", "url": "https://dzcheck.com/assets/logo.svg" }
+  }
+}
+</script>
+
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 2rem 0 0;
+}
+@media (min-width: 720px) {
+  .home-grid {
+    grid-template-columns: 1.65fr 1fr;
+    gap: 0;
+  }
+}
+
+/* Carte édition du jour */
+.card-today {
+  border-top: 4px solid var(--ink);
+  padding: 1.5rem 0 2rem;
+}
+@media (min-width: 720px) {
+  .card-today { padding-right: 2.5rem; border-right: 1px solid var(--rule); }
+}
+.card-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 1rem;
+}
+.card-today .card-label { color: var(--red); }
+.card-num {
+  font-family: var(--display);
+  font-size: 96px;
+  line-height: 1;
+  color: var(--rule);
+  font-weight: 500;
+  display: block;
+  letter-spacing: -4px;
+  margin-bottom: -6px;
+}
+.card-kicker {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+.card-today h2 {
+  font-family: var(--display);
+  font-size: clamp(26px, 4.5vw, 38px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0 0 0.75rem;
+}
+.card-date {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 11px 22px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--red); }
+
+/* Colonne droite */
+.right-col { padding: 0; }
+@media (min-width: 720px) { .right-col { padding: 0 0 0 2rem; } }
+
+/* Carte spécial */
+.card-special {
+  border-top: 4px solid var(--gold);
+  padding: 1.5rem 0 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 720px) { .card-special { margin-top: 0; } }
+.card-special .card-label { color: var(--gold); }
+.card-special h3 {
+  font-family: var(--display);
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+.btn-secondary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { color: var(--paper); background: var(--ink); }
+
+/* Archives */
+.archives-side {
+  border-top: 2px solid var(--rule);
+  padding-top: 1.25rem;
+  margin-top: 2rem;
+}
+.archives-side h3 {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 1rem;
+  font-weight: bold;
+}
+.archives-side ul { list-style: none; padding: 0; margin: 0; }
+.archives-side li { border-bottom: 0.5px solid var(--rule); padding: 8px 0; }
+.archives-side a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 14px;
+  line-height: 1.4;
+  display: block;
+}
+.archives-side a:hover { color: var(--red); }
+.archives-side .meta {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 2px;
+}
+</style>
 </head>
 <body>
 
 <div class="page">
 
-  <div class="topbar">
-    <small id="topbar-date">N° 005 · Jeudi 7 mai 2026</small>
-    <button class="toggle" id="toggle">☾ NUIT</button>
-  </div>
+<div class="topbar">
+  <small id="topbar-date">N° 006 · Mardi 26 mai 2026</small>
+  <button class="toggle" id="toggle">☾ NUIT</button>
+</div>
 
-  <header class="masthead">
-    <p class="pre" id="masthead-kicker">Conservation · Kenya · Afrique de l'Est</p>
-    <h1>Bonjour le monde</h1>
-    <p class="strap">les bonnes nouvelles, des cinq continents</p>
-  </header>
+<header class="masthead">
+  <p class="pre" id="masthead-kicker">Conservation · Patagonie · Chili</p>
+  <h1>Bonjour le monde</h1>
+  <p class="strap">les bonnes nouvelles, des cinq continents</p>
+</header>
 
-  <div class="bandeau">
-    <span>Aujourd'hui</span>
-    <span id="bandeau-info">6 éditions disponibles</span>
-  </div>
+<div class="bandeau">
+  <span>Aujourd'hui</span>
+  <span id="bandeau-info">7 éditions disponibles</span>
+</div>
 
-  <!-- ==================== CONTENU PRINCIPAL ==================== -->
-  <div id="content">
-    <!-- CONTENU STATIQUE POUR GOOGLEBOT (visible même sans JS) -->
-    <div class="home-grid" id="static-content">
-      <!-- Carte édition du jour -->
-      <div class="card-today">
-        <p class="card-label">Édition du jour</p>
-        <span class="card-num">005</span>
-        <p class="card-kicker">Conservation · Kenya · Afrique de l'Est</p>
-        <h2>Au Kenya, des femmes maasaï rendent la vie à une rivière</h2>
-        <p class="card-date">Jeudi 7 mai 2026</p>
-        <a class="btn-primary" href="archives/n005.html">Lire l'édition →</a>
+<!-- Contenu statique lu par Google — mis à jour à chaque édition -->
+<div id="content">
+  <div class="home-grid">
+    <div class="card-today">
+      <p class="card-label">Édition du jour</p>
+      <span class="card-num">006</span>
+      <p class="card-kicker">Conservation · Patagonie · Chili</p>
+      <h2>Au bout du monde, le Chili protège sa Patagonie sauvage</h2>
+      <p class="card-date">Mardi 26 mai 2026</p>
+      <a class="btn-primary" href="archives/n006.html">Lire l'édition →</a>
+    </div>
+    <div class="right-col">
+      <div class="card-special">
+        <p class="card-label">Spécial de la semaine</p>
+        <p class="card-kicker">Tourisme · Sahara algérien</p>
+        <h3>L'Algérie rouvre ses dunes au monde, doucement</h3>
+        <a class="btn-secondary" href="archives/n002.html">Lire le spécial →</a>
       </div>
-
-      <!-- Colonne droite -->
-      <div class="right-col">
-        <!-- Spécial de la semaine -->
-        <div class="card-special">
-          <p class="card-label">Spécial de la semaine</p>
-          <p class="card-kicker">Tourisme · Sahara algérien</p>
-          <h3>L'Algérie rouvre ses dunes au monde, doucement</h3>
-          <a class="btn-secondary" href="archives/special-algerie.html">Lire le spécial →</a>
-        </div>
-
-        <!-- Archives -->
-        <div class="archives-side">
-          <h3>Archives</h3>
-          <ul>
-            <li><a href="archives/n004.html"><span class="meta">N° 004 · 6 mai 2026</span>Reforestation au Sénégal : 2 millions d'arbres plantés</a></li>
-            <li><a href="archives/n003.html"><span class="meta">N° 003 · 5 mai 2026</span>Énergie solaire : le Maroc inaugure la plus grande ferme d'Afrique</a></li>
-            <li><a href="archives/n002.html"><span class="meta">N° 002 · 4 mai 2026</span>Start-up agricole : le Bénin nourrit ses écoles localement</a></li>
-            <li><a href="archives/n001.html"><span class="meta">N° 001 · 3 mai 2026</span>Innovation : des bioplastiques à base de déchets de mangue</a></li>
-          </ul>
-        </div>
+      <div class="archives-side">
+        <h3>Archives</h3>
+        <ul>
+          <li><a href="archives/n005.html"><span class="meta">N° 005 · Jeudi 7 mai 2026</span>Au Kenya, des femmes maasaï rendent la vie à une rivière</a></li>
+          <li><a href="archives/n004.html"><span class="meta">N° 004 · Samedi 2 mai 2026</span>Un papillon disparu depuis trente ans resurgit en Angleterre</a></li>
+          <li><a href="archives/n003.html"><span class="meta">N° 003 · Samedi 2 mai 2026</span>Dans la forêt de Sumatra, une femme a convaincu soixante villages</a></li>
+          <li><a href="archives/n001.html"><span class="meta">N° 001 · Jeudi 30 avril 2026</span>L'Afrique se fend en silence, à la vitesse de l'ongle qui pousse</a></li>
+        </ul>
       </div>
     </div>
   </div>
-
   <div class="colophon">
     <p class="left">Posez le téléphone. Respirez. À demain.</p>
     <p class="right">Édition assemblée par une IA · Toutes les nouvelles citent leur source</p>
   </div>
-
-  <!-- Contenu SEO invisible (renforce l'indexation) -->
-  <div class="seo-content" aria-hidden="true">
-    <h2>DZCheck : Les bonnes nouvelles d'Afrique et du monde</h2>
-    <p>Édition N°005 du 7 mai 2026 : Au Kenya, des femmes maasaï ont restauré une rivière asséchée grâce à des techniques traditionnelles de conservation de l'eau. En Algérie, le tourisme reprend progressivement dans le Sahara après des années de fermeture. DZCheck est une newsletter quotidienne qui rassemble les bonnes nouvelles des cinq continents, avec des sujets sur l'environnement, l'innovation, la culture et le développement durable en Afrique.</p>
-    <p>Archives disponibles : N°004 sur la reforestation au Sénégal, N°003 sur l'énergie solaire au Maroc, N°002 sur l'agriculture au Bénin, N°001 sur les bioplastiques à base de déchets de mangue.</p>
-  </div>
+</div>
 
 </div>
 
 <script>
-  // ==================== MODE JOUR/NUIT (inchangé) ====================
-  (function(){
-    const btn = document.getElementById('toggle');
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-      btn.textContent = '☀ JOUR';
+(function(){
+  const btn = document.getElementById('toggle');
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark');
+    btn.textContent = '☀ JOUR';
+  }
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    btn.textContent = document.body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
+  });
+})();
+
+(async function(){
+  try {
+    const res = await fetch('data/editions.json');
+    const data = await res.json();
+    const editions = data.editions || [];
+
+    const today = new Date().toISOString().slice(0, 10);
+    const available = editions.filter(e => e.date <= today);
+
+    if (available.length === 0) return;
+
+    const todayEd  = available[0];
+    const specialEd = available.find(e => e.special && e !== todayEd) || null;
+    const archives  = available.filter(e => e !== todayEd && e !== specialEd);
+
+    document.title = 'Bonjour le monde — N° ' + todayEd.numero;
+    document.getElementById('topbar-date').textContent = 'N° ' + todayEd.numero + ' · ' + todayEd.date_fr;
+    document.getElementById('masthead-kicker').textContent = todayEd.kicker_une;
+    document.getElementById('bandeau-info').textContent =
+      available.length + ' édition' + (available.length > 1 ? 's' : '') + ' disponible' + (available.length > 1 ? 's' : '');
+
+    let html = '<div class="home-grid">';
+    html += `<div class="card-today">
+      <p class="card-label">Édition du jour</p>
+      <span class="card-num">${todayEd.numero}</span>
+      <p class="card-kicker">${todayEd.kicker_une}</p>
+      <h2>${todayEd.titre_une}</h2>
+      <p class="card-date">${todayEd.date_fr}</p>
+      <a class="btn-primary" href="${todayEd.fichier}">Lire l'édition →</a>
+    </div>`;
+
+    html += '<div class="right-col">';
+    if (specialEd) {
+      html += `<div class="card-special">
+        <p class="card-label">Spécial de la semaine</p>
+        <p class="card-kicker">${specialEd.kicker_une}</p>
+        <h3>${specialEd.titre_une}</h3>
+        <a class="btn-secondary" href="${specialEd.fichier}">Lire le spécial →</a>
+      </div>`;
     }
-    btn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      btn.textContent = document.body.classList.contains('dark') ? '☀ JOUR' : '☾ NUIT';
-    });
-  })();
-
-  // ==================== CHARGEMENT DYNAMIQUE (optionnel, enrichit l'expérience) ====================
-  (async function(){
-    try {
-      const res = await fetch('data/editions.json');
-      const data = await res.json();
-      const editions = data.editions || [];
-
-      const today = new Date().toISOString().slice(0, 10);
-      const available = editions.filter(e => e.date <= today);
-
-      if (available.length === 0) {
-        // Garde le contenu statique
-        return;
-      }
-
-      const todayEd  = available[0];
-      const specialEd = available.find(e => e.special && e !== todayEd) || null;
-      const archives  = available.filter(e => e !== todayEd && e !== specialEd);
-
-      // Mise à jour des éléments dynamiques
-      document.title = 'DZCheck — ' + todayEd.titre_une + ' (N°' + todayEd.numero + ')';
-      document.getElementById('topbar-date').textContent = 'N° ' + todayEd.numero + ' · ' + todayEd.date_fr;
-      document.getElementById('masthead-kicker').textContent = todayEd.kicker_une;
-      document.getElementById('bandeau-info').textContent = available.length + ' édition' + (available.length > 1 ? 's' : '') + ' disponible' + (available.length > 1 ? 's' : '');
-
-      // Si vous voulez que le JS remplace complètement le contenu statique (plus cohérent avec vos données)
-      // Décommentez le bloc ci-dessous pour une expérience 100% dynamique (mais Google a déjà vu le contenu statique)
-      /*
-      let html = '<div class="home-grid">';
-      html += '<div class="card-today">' +
-        '<p class="card-label">Édition du jour</p>' +
-        '<span class="card-num">' + todayEd.numero + '</span>' +
-        '<p class="card-kicker">' + todayEd.kicker_une + '</p>' +
-        '<h2>' + todayEd.titre_une + '</h2>' +
-        '<p class="card-date">' + todayEd.date_fr + '</p>' +
-        '<a class="btn-primary" href="' + todayEd.fichier + '">Lire l\'édition →</a>' +
-        '</div>';
-      html += '<div class="right-col">';
-      if (specialEd) {
-        html += '<div class="card-special">' +
-          '<p class="card-label">Spécial de la semaine</p>' +
-          '<p class="card-kicker">' + specialEd.kicker_une + '</p>' +
-          '<h3>' + specialEd.titre_une + '</h3>' +
-          '<a class="btn-secondary" href="' + specialEd.fichier + '">Lire le spécial →</a>' +
-          '</div>';
-      }
-      if (archives.length > 0) {
-        html += '<div class="archives-side"><h3>Archives</h3><ul>';
-        archives.forEach(e => {
-          html += '<li><a href="' + e.fichier + '"><span class="meta">N° ' + e.numero + ' · ' + e.date_fr + '</span>' + e.titre_une + '</a></li>';
-        });
-        html += '</ul></div>';
-      }
-      html += '</div></div>';
-      document.getElementById('content').innerHTML = html;
-      */
-      
-      // Version simple : on cache le contenu statique et on affiche le dynamique (optionnel)
-      // document.getElementById('static-content').style.display = 'none';
-      // (mais garder le contenu statique visible est plus sûr pour le SEO)
-      
-    } catch(err) {
-      console.log('Mode statique actif (fichier JSON non trouvé)');
+    if (archives.length > 0) {
+      const mt = specialEd ? '' : 'margin-top:1.5rem;border-top:4px solid var(--rule);padding-top:1.5rem;';
+      html += `<div class="archives-side" style="${mt}"><h3>Archives</h3><ul>`;
+      archives.forEach(e => {
+        html += `<li><a href="${e.fichier}"><span class="meta">N° ${e.numero} · ${e.date_fr}</span>${e.titre_une}</a></li>`;
+      });
+      html += '</ul></div>';
     }
-  })();
+    html += '</div></div>';
+    html += `<div class="colophon">
+      <p class="left">Posez le téléphone. Respirez. À demain.</p>
+      <p class="right">Édition assemblée par une IA · Toutes les nouvelles citent leur source</p>
+    </div>`;
+
+    document.getElementById('content').innerHTML = html;
+  } catch(err) {
+    // Contenu statique maintenu si fetch échoue
+  }
+})();
 </script>
 
 </body>
