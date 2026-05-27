@@ -127,6 +127,41 @@
 }
 .btn-primary:hover { background: var(--red); }
 
+/* Flash rouge — éditions spéciales */
+@keyframes flash-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(204,41,41,0.55); }
+  50%      { box-shadow: 0 0 0 7px rgba(204,41,41,0); }
+}
+.btn-flash {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: #CC2929;
+  padding: 11px 22px;
+  text-decoration: none;
+  transition: background 0.2s;
+  animation: flash-pulse 1.8s ease-in-out infinite;
+  border-radius: 2px;
+}
+.btn-flash:hover { background: #a31f1f; animation: none; }
+.badge-special {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: #CC2929;
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
 /* Colonne droite */
 .right-col { padding: 0; }
 @media (min-width: 720px) { .right-col { padding: 0 0 0 2rem; } }
@@ -274,12 +309,12 @@
 <div id="content">
   <div class="home-grid">
     <div class="card-today">
-      <p class="card-label">Édition du jour</p>
+      <p class="card-label">Édition spéciale <span class="badge-special">Spécial</span></p>
       <span class="card-num">008</span>
       <p class="card-kicker">Kabylie · Numidie · Amazigh</p>
       <h2>La Kabylie dans 20 ans — portrait d'une région qui se réinvente</h2>
       <p class="card-date">Mercredi 27 mai 2026 · Spécial Kabylie</p>
-      <a class="btn-primary" href="archives/n008.html">Lire l'édition →</a>
+      <a class="btn-flash" href="archives/n008.html">Lire l'édition →</a>
     </div>
     <div class="right-col">
       <div class="card-special">
@@ -359,14 +394,15 @@
     document.getElementById('masthead-kicker').textContent = todayEd.kicker_une;
     document.getElementById('bandeau-info').textContent = 'Aujourd\'hui · N° ' + todayEd.numero;
 
+    const isSpecial = !!todayEd.special;
     let html = '<div class="home-grid">';
     html += `<div class="card-today">
-      <p class="card-label">Édition du jour</p>
+      <p class="card-label">${isSpecial ? 'Édition spéciale <span class="badge-special">Spécial</span>' : 'Édition du jour'}</p>
       <span class="card-num">${todayEd.numero}</span>
       <p class="card-kicker">${todayEd.kicker_une}</p>
       <h2>${todayEd.titre_une}</h2>
       <p class="card-date">${todayEd.date_fr}</p>
-      <a class="btn-primary" href="${todayEd.fichier}">Lire l'édition →</a>
+      <a class="${isSpecial ? 'btn-flash' : 'btn-primary'}" href="${todayEd.fichier}">Lire l'édition →</a>
     </div>`;
 
     html += '<div class="right-col">';
