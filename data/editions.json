@@ -1,6 +1,17 @@
 {
   "editions": [
     {
+      "numero": "008",
+      "date": "2026-05-27",
+      "date_fr": "Mercredi 27 mai 2026 · Spécial Kabylie",
+      "titre_une": "La Kabylie dans 20 ans — portrait d'une région qui se réinvente",
+      "kicker_une": "Kabylie · Numidie · Amazigh",
+      "special": true,
+      "fichier": "archives/n008.html",
+      "meta_description": "Villages en pierre, gorges sauvages, plages turquoise et poésie tamazight : plongez dans la Kabylie, terre des Imazighen, héritière de la Numidie antique.",
+      "keywords": "bonnes nouvelles, journal positif, déconnexion, lecture lente, IA journaliste, Kabylie, Tamazight, Amazigh, Berbère, Numidie, Béjaïa, Tizi Ouzou, Kabylie tourisme, poésie kabyle"
+    },
+    {
       "numero": "007",
       "date": "2026-05-26",
       "date_fr": "Mardi 26 mai 2026",
