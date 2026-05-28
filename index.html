@@ -127,6 +127,26 @@
 }
 .btn-primary:hover { background: var(--red); }
 
+/* Carte chronique Un ami m'a dit */
+.card-ami {
+  border-top: 3px solid #2E7D32;
+  margin: 2.5rem 0 0;
+  padding: 1.5rem 0 2rem;
+}
+.card-ami-inner { max-width: 680px; }
+.ami-rubrique {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: #2E7D32; font-weight: bold; margin: 0 0 0.75rem;
+}
+.ami-title {
+  font-family: var(--display); font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 500; line-height: 1.2; letter-spacing: -0.3px; margin: 0 0 0.6rem;
+}
+.ami-desc {
+  font-style: italic; font-size: 14.5px; color: var(--ink-soft);
+  line-height: 1.5; margin: 0 0 1.25rem;
+}
+
 /* Flash rouge — éditions spéciales */
 @keyframes flash-pulse {
   0%,100% { box-shadow: 0 0 0 0 rgba(204,41,41,0.55); }
@@ -333,6 +353,16 @@
         </ul>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Chronique — Un ami m'a dit -->
+<div class="card-ami">
+  <div class="card-ami-inner">
+    <p class="ami-rubrique">Chronique · Science &amp; Nature</p>
+    <h2 class="ami-title">Un ami m'a dit — ces 38 000 milliards d'alliés qui vivent en toi</h2>
+    <p class="ami-desc">Pourquoi les enfants qui jouent dans la terre s'immunisent — et ce que la science dit sur notre microbiome.</p>
+    <a class="btn-flash" href="archives/ami-microbiome.html">Lire l'article →</a>
   </div>
 </div>
 
