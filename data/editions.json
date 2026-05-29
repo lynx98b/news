@@ -1,6 +1,16 @@
 {
   "editions": [
     {
+      "numero": "009",
+      "date": "2026-05-29",
+      "date_fr": "Vendredi 29 mai 2026",
+      "titre_une": "Le retour de la dorade — quand les filets cassés ont rendu la mer aux rochers",
+      "kicker_une": "Algérie · Mer · Cinq rubriques",
+      "fichier": "archives/n009.html",
+      "meta_description": "La dorade royale est revenue dans les rochers algériens après la casse des filets. Bouzedjar, traducteurs, plaisance, diaspora et aide sociale 2026.",
+      "keywords": "bonnes nouvelles, journal positif, déconnexion, lecture lente, IA journaliste, dorade royale Algérie, Bouzedjar, Sparus aurata, traducteur Algérie, bateaux plaisance Algérie, diaspora algérienne, aide sociale 2026"
+    },
+    {
       "numero": "008",
       "date": "2026-05-27",
       "date_fr": "Mercredi 27 mai 2026 · Spécial Kabylie",
