@@ -1,6 +1,17 @@
 {
   "editions": [
     {
+      "numero": "010",
+      "date": "2026-06-07",
+      "date_fr": "Dimanche 7 juin 2026 · Spécial Internet",
+      "titre_une": "Le scrollage infini, l'IA qui s'exprime, la dépendance numérique — trois questions du monde connecté",
+      "kicker_une": "Numérique · Internet · Intelligence artificielle",
+      "special": true,
+      "fichier": "archives/n010.html",
+      "meta_description": "Scrollage infini et cerveau dopaminé, l'IA comme nouvelle voix d'internet, dépendance à l'IA : trois sujets clés du monde numérique, appuyés sur des études majeures.",
+      "keywords": "scrolling nocif, défilement infini, dépendance téléphone, IA internet, dépendance IA, Aza Raskin, dopamine smartphone, après internet, intelligence artificielle, automation bias, Google Effect, santé numérique"
+    },
+    {
       "numero": "009",
       "date": "2026-05-29",
       "date_fr": "Vendredi 29 mai 2026",
