@@ -1,6 +1,17 @@
 {
   "editions": [
     {
+      "numero": "011",
+      "date": "2026-06-12",
+      "date_fr": "Vendredi 12 juin 2026 · Spécial Cybersécurité",
+      "titre_une": "Les gardiens invisibles du numérique — architecte de sécurité, de solution, d'application, conseiller cyber",
+      "kicker_une": "Cybersécurité · Architectures · Métiers · Mythes",
+      "special": true,
+      "fichier": "archives/n011.html",
+      "meta_description": "Quatre métiers qui protègent vos données sans que vous le sachiez, expliqués simplement avec exemples concrets. Et l'IA démonte 5 mythes de la cybersécurité avec chiffres à l'appui.",
+      "keywords": "architecte de sécurité, architecte de solution, architecte d'application, conseiller cybersécurité, métiers cybersécurité, mythes cybersécurité, RSSI, CISO, phishing, ransomware, NIS2"
+    },
+    {
       "numero": "010",
       "date": "2026-06-07",
       "date_fr": "Dimanche 7 juin 2026 · Spécial Internet",
